@@ -144,7 +144,7 @@ rm(res)
 
 ```{r tiny-example, eval=TRUE}
 res_4BG = benchmark_4bg(vy, mX, "lasso", lambda_init, sigma2_init, a, b, u, v, nburn, nsamples, trials, beta_inds=NA) 
-print(res_4BG)
+# print(res_4BG)
 ```
 
 ```{r}
@@ -153,7 +153,7 @@ plot_densities(res_4BG)
 
 ```{r, eval=interactive()}
 res_3BG = benchmark_3bg(vy, mX, "lasso", lambda_init, sigma2_init, a, b, u, v, nburn, nsamples, trials, beta_inds=res_4BG$beta_inds) 
-print(res_3BG)
+# print(res_3BG)
 ```
 
 ```{r, eval=interactive()}
@@ -224,7 +224,7 @@ plot_density_pairs(res_ng10, res_4BG)
 
 ```{r, eval=interactive()}
 res_hans = benchmark_blasso_hans(vy, mX,lambda_init, sigma2_init, a, b, u, v, nburn, nsamples, trials, beta_inds=res_4BG$beta_inds) 
-print(res_hans)
+# print(res_hans)
 ```
 
 ```{r, eval=interactive()}
@@ -237,7 +237,7 @@ plot_density_pairs(res_hans, res_3BG)
 ```{r, eval=interactive()}
 
 res_2BG_bs = benchmark_blasso_2BG_beta_sigma2(vy, mX,lambda_init, sigma2_init, a, b, u, v, nburn, nsamples, trials, beta_inds=res_4BG$beta_inds) 
-print(res_2BG_bs)
+# print(res_2BG_bs)
 ```
 
 ```{r, eval=interactive()}
@@ -246,7 +246,7 @@ plot_density_pairs(res_3BG, res_2BG_bs)
 
 ```{r, eval=interactive()}
 res_2BG_bl = benchmark_blasso_2BG_beta_lambda2(vy, mX,lambda_init, sigma2_init, a, b, u, v, nburn, nsamples, trials, beta_inds=res_4BG$beta_inds) 
-print(res_2BG_bl)
+# print(res_2BG_bl)
 ```
 
 ```{r, eval=interactive()}
@@ -260,7 +260,7 @@ plot_density_pairs(res_3BG, res_2BG_bl)
 
 ```{r, eval=interactive()}
 res_pcg_ls = benchmark_pcg_lambda2_col_sigma2(vy, mX, "lasso", lambda_init, sigma2_init, a, b, u, v, nburn, nsamples, trials, beta_inds=res_4BG$beta_inds) 
-print(res_pcg_ls)
+# print(res_pcg_ls)
 ```
 
 ```{r, eval=interactive()}
@@ -269,7 +269,7 @@ plot_density_pairs(res_4BG, res_pcg_ls)
 
 ```{r, eval=interactive()}
 res_pcg_sl = benchmark_pcg_sigma2_col_lambda2(vy, mX, "lasso", lambda_init, sigma2_init, a, b, u, v, nburn, nsamples, trials, beta_inds=res_4BG$beta_inds) 
-print(res_pcg_sl)
+# print(res_pcg_sl)
 ```
 
 ```{r, eval=interactive()}
@@ -278,7 +278,7 @@ plot_density_pairs(res_4BG, res_pcg_sl)
 
 ```{r, eval=interactive()}
 res_pcg_la = benchmark_blasso_pcg_lambda2_col_va(vy, mX,lambda_init, sigma2_init, a, b, u, v, nburn, nsamples, trials, beta_inds=res_4BG$beta_inds) 
-print(res_pcg_la)
+# print(res_pcg_la)
 ```
 
 ```{r, eval=interactive()}
@@ -288,7 +288,7 @@ plot_density_pairs(res_4BG, res_pcg_la)
 
 ```{r, eval=interactive()}
 res_pcg_sa = benchmark_blasso_pcg_sigma2_col_va(vy, mX,lambda_init, sigma2_init, a, b, u, v, nburn, nsamples, trials, beta_inds=res_4BG$beta_inds) 
-print(res_pcg_sa)
+# print(res_pcg_sa)
 ```
 
 ```{r, eval=interactive()}
@@ -297,7 +297,7 @@ plot_density_pairs(res_4BG, res_pcg_sa)
 
 ```{r, eval=interactive()}
 res_pcg_bs = benchmark_pcg_vbeta_col_sigma2(vy, mX, "lasso", lambda_init, sigma2_init, a, b, u, v, nburn, nsamples, trials, beta_inds=res_4BG$beta_inds) 
-print(res_pcg_bs)
+# print(res_pcg_bs)
 ```
 
 
@@ -308,7 +308,7 @@ plot_density_pairs(res_4BG, res_pcg_bs)
 
 ```{r, eval=interactive()}
 res_pcg_sb = benchmark_pcg_vbeta_col_sigma2(vy, mX, "lasso", lambda_init, sigma2_init, a, b, u, v, nburn, nsamples, trials, beta_inds=res_4BG$beta_inds) 
-print(res_pcg_sb)
+# print(res_pcg_sb)
 ```
 
 
@@ -335,7 +335,7 @@ if (requireNamespace("bayesreg", quietly = TRUE)) {
     beta_inds = res_4BG$beta_inds
   )
 
-  print(res_bayesreg)
+  # print(res_bayesreg)
 
 } else {
   message("Skipping bayesreg benchmark: package 'bayesreg' is not installed.")

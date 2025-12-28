@@ -1,3 +1,2 @@
-# FastGibbsSamplers (development version)
-
-* Initial CRAN submission.
+# FastGibbsSamplers 0.0.0.9000
+- Initial development version.

@@ -30,22 +30,4 @@ SystemRequirements: C++17
 Imports: Rcpp
 LinkingTo: Rcpp, RcppArmadillo, RcppEigen, RcppNumerical, RcppClock
 RoxygenNote: 7.3.2
-Suggests:
-    bayesreg,
-    bayeslm,
-    brms,
-    rstan,
-    monomvn,
-    horseshoe,
-    Mhorseshoe,
-    flare,
-    lars,
-    ISLR,
-    mlbench,
-    hdi,
-    Ecdata,
-    ppls,
-    knitr,
-    posterior,
-    rmarkdown
-VignetteBuilder: knitr
+Suggests: posterior

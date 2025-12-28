@@ -1,22 +1,24 @@
-
+#' Internal MCMC summary statistics
+#'
+#' @noRd
 mcmc_stats = function(mBeta, vsigma2, vlambda2, time_val, inds_use)
 {
   mBeta <- as.matrix(mBeta)
   N = length(inds_use)
   p <- ncol(mBeta)
 
-  vESS <- c()
+  vESS <- numeric(p)
   for(j in 1:p) {
     vESS[j] <- effective_sample_size(mBeta[inds_use,j])
   }
-  Ef = median(vESS)/time_val
+  Ef = stats::median(vESS)/time_val
   ESS_sigma2  = effective_sample_size(as.vector(vsigma2[inds_use]))
   Ef_sigma2 = ESS_sigma2/time_val
   ESS_lambda2  = effective_sample_size(as.vector(vlambda2[inds_use]))
   Ef_lambda2 = ESS_lambda2/time_val
 
   stat_vec = c(
-    100*median(vESS)/N,
+    100*stats::median(vESS)/N,
     Ef,
     100*ESS_sigma2/N,
     Ef_sigma2,
@@ -32,6 +34,9 @@ mcmc_stats = function(mBeta, vsigma2, vlambda2, time_val, inds_use)
 
 ################################################################################
 
+#' Internal MCMC diagnostics
+#'
+#' @noRd
 mcmc_diagnostics <- function(mBeta, vsigma2, vlambda2, beta_inds, mStat, doplots=TRUE)
 {
   mBeta <- as.matrix(mBeta)

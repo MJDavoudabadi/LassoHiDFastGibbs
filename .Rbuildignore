@@ -1,3 +1,6 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
 ^FastGibbsSamplers\.Rproj$
+^\.github$
+^cran-comments\.md$
+
