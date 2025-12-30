@@ -33,9 +33,7 @@ helper_files <- c(
   "benchmark_horseshoe_bayeslm.R",
   "benchmark_horseshoe_bayesreg.R",
   "benchmark_horseshoe_brms.R",
-  "effective_sample_size.R",
   "generate_data.R",
-  "mcmc_stats.R",
   "plot_densities.R"
 )
 
@@ -71,13 +69,12 @@ The outputs are:
 
 ```{r}
 
-if (!requireNamespace("flare", quietly = TRUE)) {
-  knitr::knit_exit()
-}
-dataset_name <- "eyedata"
+# if (!requireNamespace("flare", quietly = TRUE)) {
+#   knitr::knit_exit()
+# }
+# dataset_name <- "eyedata"
 
 
-# dataset_name <- "cookie"
 
 
 # if (!requireNamespace("hdi", quietly = TRUE)) {
@@ -85,11 +82,6 @@ dataset_name <- "eyedata"
 # }
 # dataset_name <- "riboflavin"
 
-
-# dataset_name <- "covid"
-
-
-# dataset_name <- "qtl"
 
 ```
 
@@ -147,18 +139,12 @@ res_4BG = benchmark_4bg(vy, mX, "lasso", lambda_init, sigma2_init, a, b, u, v, n
 # print(res_4BG)
 ```
 
-```{r}
-plot_densities(res_4BG)
-```
 
 ```{r, eval=interactive()}
 res_3BG = benchmark_3bg(vy, mX, "lasso", lambda_init, sigma2_init, a, b, u, v, nburn, nsamples, trials, beta_inds=res_4BG$beta_inds) 
 # print(res_3BG)
 ```
 
-```{r, eval=interactive()}
-plot_density_pairs(res_4BG, res_3BG)
-```
 
 # The two-block Gibbs sampler with 3/1 grouping
 
@@ -178,11 +164,6 @@ res_ng1 = benchmark_nested_gibbs(vy,
 ```
 
 
-
-```{r, eval=interactive()}
-plot_density_pairs(res_ng1, res_4BG)
-```
-
 ```{r, eval=interactive()}
 res_ng5 = benchmark_nested_gibbs(vy,
                                 mX,
@@ -195,9 +176,7 @@ res_ng5 = benchmark_nested_gibbs(vy,
                                 trials,
                                 beta_inds=res_4BG$beta_inds) 
 ```
-```{r, eval=interactive()}
-plot_density_pairs(res_ng5, res_4BG)
-```
+
 
 
 
@@ -215,9 +194,6 @@ res_ng10 = benchmark_nested_gibbs(vy,
                                 beta_inds=res_4BG$beta_inds) 
 ```
 
-```{r, eval=interactive()}
-plot_density_pairs(res_ng10, res_4BG)
-```
 
 # Modified Hans sampler
 
@@ -227,9 +203,6 @@ res_hans = benchmark_blasso_hans(vy, mX,lambda_init, sigma2_init, a, b, u, v, nb
 # print(res_hans)
 ```
 
-```{r, eval=interactive()}
-plot_density_pairs(res_hans, res_3BG)
-```
 
 
 # The two two-block Gibbs samplers with 2/2 grouping
@@ -240,19 +213,11 @@ res_2BG_bs = benchmark_blasso_2BG_beta_sigma2(vy, mX,lambda_init, sigma2_init, a
 # print(res_2BG_bs)
 ```
 
-```{r, eval=interactive()}
-plot_density_pairs(res_3BG, res_2BG_bs)
-```
 
 ```{r, eval=interactive()}
 res_2BG_bl = benchmark_blasso_2BG_beta_lambda2(vy, mX,lambda_init, sigma2_init, a, b, u, v, nburn, nsamples, trials, beta_inds=res_4BG$beta_inds) 
 # print(res_2BG_bl)
 ```
-
-```{r, eval=interactive()}
-plot_density_pairs(res_3BG, res_2BG_bl)
-```
-
 
 
 # The partially collapsed Gibbs samplers
@@ -263,27 +228,18 @@ res_pcg_ls = benchmark_pcg_lambda2_col_sigma2(vy, mX, "lasso", lambda_init, sigm
 # print(res_pcg_ls)
 ```
 
-```{r, eval=interactive()}
-plot_density_pairs(res_4BG, res_pcg_ls)
-```
 
 ```{r, eval=interactive()}
 res_pcg_sl = benchmark_pcg_sigma2_col_lambda2(vy, mX, "lasso", lambda_init, sigma2_init, a, b, u, v, nburn, nsamples, trials, beta_inds=res_4BG$beta_inds) 
 # print(res_pcg_sl)
 ```
 
-```{r, eval=interactive()}
-plot_density_pairs(res_4BG, res_pcg_sl)
-```
 
 ```{r, eval=interactive()}
 res_pcg_la = benchmark_blasso_pcg_lambda2_col_va(vy, mX,lambda_init, sigma2_init, a, b, u, v, nburn, nsamples, trials, beta_inds=res_4BG$beta_inds) 
 # print(res_pcg_la)
 ```
 
-```{r, eval=interactive()}
-plot_density_pairs(res_4BG, res_pcg_la)
-```
 
 
 ```{r, eval=interactive()}
@@ -291,19 +247,12 @@ res_pcg_sa = benchmark_blasso_pcg_sigma2_col_va(vy, mX,lambda_init, sigma2_init,
 # print(res_pcg_sa)
 ```
 
-```{r, eval=interactive()}
-plot_density_pairs(res_4BG, res_pcg_sa)
-```
 
 ```{r, eval=interactive()}
 res_pcg_bs = benchmark_pcg_vbeta_col_sigma2(vy, mX, "lasso", lambda_init, sigma2_init, a, b, u, v, nburn, nsamples, trials, beta_inds=res_4BG$beta_inds) 
 # print(res_pcg_bs)
 ```
 
-
-```{r, eval=interactive()}
-plot_density_pairs(res_4BG, res_pcg_bs)
-```
 
 
 ```{r, eval=interactive()}
@@ -312,10 +261,6 @@ res_pcg_sb = benchmark_pcg_vbeta_col_sigma2(vy, mX, "lasso", lambda_init, sigma2
 ```
 
 
-
-```{r, eval=interactive()}
-plot_density_pairs(res_4BG, res_pcg_sb)
-```
  
 
 ```{r, eval=interactive()}
@@ -342,25 +287,4 @@ if (requireNamespace("bayesreg", quietly = TRUE)) {
 }
 
 ```
-
-
-```{r, eval=interactive()}
-# save(res_4BG,
-#      res_3BG,
-#      res_2BG_bl,
-#      res_2BG_bs,
-#      res_hans,
-#      res_ng1,
-#      res_ng5,
-#      res_ng10,
-#      res_pcg_ls,
-#      res_pcg_sl,
-#      res_pcg_la,
-#      res_pcg_sa,
-#      res_pcg_bs,
-#      res_pcg_sb,
-#      res_bayesreg,
-#      file = here("results",paste0(dataset_name,"_results_ngtp.Rdata")))
-```
-
 
