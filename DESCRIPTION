@@ -31,3 +31,4 @@ Imports: Rcpp
 LinkingTo: Rcpp, RcppArmadillo, RcppEigen, RcppNumerical, RcppClock
 RoxygenNote: 7.3.2
 Suggests: posterior
+
