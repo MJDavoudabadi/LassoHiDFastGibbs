@@ -43,12 +43,12 @@ benchmark_4bg <- function(
     inds_use = (nburn + 1):nsamples
 
     # Calculate summary statistics of efficiencies and mixing rates
-    stats = mcmc_stats(res_mcmc$mBeta, res_mcmc$vsigma2, res_mcmc$vlambda2, time_val, inds_use)
+    stats = FastGibbsSamplers:::mcmc_stats(res_mcmc$mBeta, res_mcmc$vsigma2, res_mcmc$vlambda2, time_val, inds_use)
     # print(stats)
 
     mStat = rbind(mStat,stats)
   }
 
-  return(mcmc_diagnostics(res_mcmc$mBeta[inds_use,], res_mcmc$vsigma2[inds_use], res_mcmc$vlambda2[inds_use], beta_inds, mStat))
+  return(FastGibbsSamplers:::mcmc_diagnostics(res_mcmc$mBeta[inds_use,], res_mcmc$vsigma2[inds_use], res_mcmc$vlambda2[inds_use], beta_inds, mStat))
 
 }

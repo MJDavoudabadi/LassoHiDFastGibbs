@@ -46,12 +46,12 @@ benchmark_horseshoe <- function(
 
     vESS <- c()
     for(j in 1:p){
-      vESS[j] <- effective_sample_size(res_mcmc$BetaSamples[j,])
+      vESS[j] <- FastGibbsSamplers:::effective_sample_size(res_mcmc$BetaSamples[j,])
     }
     Ef = median(vESS)/time_val
-    ESS_sigma2  = effective_sample_size(res_mcmc$Sigma2Samples)
+    ESS_sigma2  = FastGibbsSamplers:::effective_sample_size(res_mcmc$Sigma2Samples)
     Ef_sigma2 = ESS_sigma2/time_val
-    ESS_lambda2  = effective_sample_size(res_mcmc$TauSamples)
+    ESS_lambda2  = FastGibbsSamplers:::effective_sample_size(res_mcmc$TauSamples)
     Ef_lambda2 = ESS_lambda2/time_val
 
     stats = c(
@@ -71,6 +71,6 @@ benchmark_horseshoe <- function(
   colname_vals = c( "mix_beta", "eff_beta",  "mix_sigma2", "eff_sigma2",  "mix_lambda2", "eff_lambda2", "time")
   colnames(mStat) <- colname_vals
 
-  return(mcmc_diagnostics(t(res_mcmc$BetaSamples), res_mcmc$Sigma2Samples, res_mcmc$TauSamples, beta_inds, mStat))
+  return(FastGibbsSamplers:::mcmc_diagnostics(t(res_mcmc$BetaSamples), res_mcmc$Sigma2Samples, res_mcmc$TauSamples, beta_inds, mStat))
 }
 

@@ -97,7 +97,7 @@ benchmark_AHS <- function(
   colname_vals = c( "mix_beta", "eff_beta",  "mix_sigma2", "eff_sigma2",  "mix_lambda2", "eff_lambda2", "time")
   colnames(mStat) <- colname_vals
 
-  return(mcmc_diagnostics(res_mcmc$BetaSamples, res_mcmc$Sigma2Samples, res_mcmc$TauSamples, beta_inds, mStat, doplots = FALSE))
+  return(FastGibbsSamplers:::mcmc_diagnostics(res_mcmc$BetaSamples, res_mcmc$Sigma2Samples, res_mcmc$TauSamples, beta_inds, mStat, doplots = FALSE))
 }
 
 
@@ -196,7 +196,7 @@ benchmark_EHS <- function(
   colname_vals = c( "mix_beta", "eff_beta",  "mix_sigma2", "eff_sigma2",  "mix_lambda2", "eff_lambda2", "time")
   colnames(mStat) <- colname_vals
 
-  return(mcmc_diagnostics(res_mcmc$BetaSamples, res_mcmc$Sigma2Samples, res_mcmc$TauSamples, beta_inds, mStat, doplots = FALSE))
+  return(FastGibbsSamplers:::mcmc_diagnostics(res_mcmc$BetaSamples, res_mcmc$Sigma2Samples, res_mcmc$TauSamples, beta_inds, mStat, doplots = FALSE))
 }
 
 

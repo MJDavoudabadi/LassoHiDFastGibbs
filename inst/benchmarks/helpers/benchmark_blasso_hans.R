@@ -41,7 +41,7 @@ benchmark_blasso_hans <- function(
     inds_use = (nburn + 1):nsamples
 
     # Calculate summary statistics of efficiencies and mixing rates
-    stats = mcmc_stats(res_mcmc$mBeta, res_mcmc$vsigma2, res_mcmc$vlambda2, time_val, inds_use)
+    stats = FastGibbsSamplers:::mcmc_stats(res_mcmc$mBeta, res_mcmc$vsigma2, res_mcmc$vlambda2, time_val, inds_use)
     # print(stats)
 
     mStat = rbind(mStat,stats)

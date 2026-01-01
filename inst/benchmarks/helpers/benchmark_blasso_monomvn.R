@@ -42,7 +42,7 @@ benchmark_blasso_monomvn <- function(
     inds_use = (nburn + 1):nsamples
 
     # Calculate summary statistics of efficiencies and mixing rates
-    stats = mcmc_stats(res_mcmc$beta, res_mcmc$s2, res_mcmc$lambda2, time_val, inds_use)
+    stats = FastGibbsSamplers:::mcmc_stats(res_mcmc$beta, res_mcmc$s2, res_mcmc$lambda2, time_val, inds_use)
 
 
     mStat = rbind(mStat,stats)

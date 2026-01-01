@@ -80,12 +80,12 @@ benchmark_horseshoe_brms <- function(
 
     vESS <- c()
     for(j in 1:p){
-      vESS[j] <- effective_sample_size(beta_samples[[j]])
+      vESS[j] <- FastGibbsSamplers:::effective_sample_size(beta_samples[[j]])
     }
     Ef = median(vESS)/time_val
-    ESS_sigma2  = effective_sample_size(sigma_samples)
+    ESS_sigma2  = FastGibbsSamplers:::effective_sample_size(sigma_samples)
     Ef_sigma2 = ESS_sigma2/time_val
-    ESS_lambda2  = effective_sample_size(lambda_samples)
+    ESS_lambda2  = FastGibbsSamplers:::effective_sample_size(lambda_samples)
     Ef_lambda2 = ESS_lambda2/time_val
 
     stats = c(

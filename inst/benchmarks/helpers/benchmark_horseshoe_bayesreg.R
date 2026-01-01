@@ -55,7 +55,7 @@ benchmark_horseshoe_bayesreg <- function(
     inds_use = 1:(nsamples - nburn)
 
     # Calculate summary statistics of efficiencies and mixing rates
-    stats = mcmc_stats(t(res_mcmc$beta), res_mcmc$sigma2, res_mcmc$tau2, time_val, inds_use)
+    stats = FastGibbsSamplers:::mcmc_stats(t(res_mcmc$beta), res_mcmc$sigma2, res_mcmc$tau2, time_val, inds_use)
     # print(stats)
 
     mStat = rbind(mStat,stats)
@@ -64,6 +64,6 @@ benchmark_horseshoe_bayesreg <- function(
   colname_vals = c("eff_beta", "mix_beta", "eff_sigma2", "mix_sigma2", "eff_lambda2", "mix_lambda2", "time")
   colnames(mStat) <- colname_vals
 
-  return(mcmc_diagnostics(res_mcmc$beta, res_mcmc$sigma2, res_mcmc$tau2, beta_inds, mStat, doplots=TRUE))
+  return(FastGibbsSamplers:::mcmc_diagnostics(res_mcmc$beta, res_mcmc$sigma2, res_mcmc$tau2, beta_inds, mStat, doplots=TRUE))
 
 }

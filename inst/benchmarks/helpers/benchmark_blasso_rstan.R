@@ -82,7 +82,7 @@ benchmark_blasso_rstan <- function(
     inds_use = 1:(nsamples - nburn)
 
     # Calculate summary statistics of efficiencies and mixing rates
-    stats = mcmc_stats(res_mcmc$beta, res_mcmc$sigma2, res_mcmc$lambda2, time_val, inds_use)
+    stats = FastGibbsSamplers:::mcmc_stats(res_mcmc$beta, res_mcmc$sigma2, res_mcmc$lambda2, time_val, inds_use)
     # print(stats)
 
     mStat = rbind(mStat,stats)
