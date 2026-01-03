@@ -31,7 +31,10 @@ See the package help index (`help(package = "FastGibbsSamplers")`) for a complet
 
 ## Installation
 
-### CRAN (once released)
+### CRAN
+
+You can install the stable release from CRAN with:
 
 ```r
 install.packages("FastGibbsSamplers")
+
