@@ -45,3 +45,14 @@ The development version, which may include new features or bug fixes not yet rel
 # install.packages("pak")
 pak::pak("MJDavoudabadi/FastGibbsSamplers")
 ```
+
+
+## Citation
+
+If you use FastGibbsSamplers in your research, please cite it appropriately.
+
+You can obtain citation information directly from R:
+
+```r
+citation("FastGibbsSamplers")
+```
