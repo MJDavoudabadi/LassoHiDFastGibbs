@@ -1,86 +1,37 @@
-# Blocked, Partially Collapsed, and Nested Gibbs Sampling for the Bayesian Lasso
+# FastGibbsSamplers
 
-This repository contains code accompanying the paper **“Blocked, Partially Collapsed, and Nested Gibbs Sampling for the Bayesian Lasso.”**  
+FastGibbsSamplers provides efficient Gibbs sampling algorithms for Bayesian Lasso and related shrinkage models, with a focus on improving mixing and scalability in high-dimensional settings.
 
-In this work, we develop Gibbs samplers using blocking, partial collapsing, and nesting strategies to improve sampling efficiency. These strategies lead to more efficient exploration of the posterior distribution, particularly improving the mixing of the residual variance and penalty tuning parameters, which are often slow to converge in standard implementations. We show that partial collapsing typically results in moderate improvements, while nested Gibbs samplers offer significant gains over traditional two-block Gibbs samplers. The scalability of our approach allows fitting high-dimensional Bayesian Lasso models with tens of thousands of predictors in seconds to minutes. We further extend the methodology to the horseshoe penalty and demonstrate that similar conclusions hold. 
+This package accompanies the methodological work described in:
 
-The purpose of this repository is to **reproduce the results presented in the research paper**.
+> *Blocked, Partially Collapsed, and Nested Gibbs Sampling for the Bayesian Lasso*
 
----
+## Overview
 
-## 📂 Repository Structure
+Standard Gibbs samplers for the Bayesian Lasso can suffer from slow mixing, particularly for the residual variance and global shrinkage (penalty) parameters. This package implements a collection of alternative Gibbs sampling strategies designed to address these issues:
 
-- `cpp/` – C++ scripts for:
-  - Partially Collapsed (PC), Hans, and slice sampling algorithms  
-  - Functions for generating inverse Gaussian random numbers
-  - Code for sampling from the Lasso distribution
+- **Blocked Gibbs samplers**
+- **Partially collapsed Gibbs samplers**
+- **Nested Gibbs samplers**
 
-- `R/` – R scripts implementing:
-  - PC, Hans, two-block, three-block, and four-block Gibbs sampling algorithms  
-  - Functions for sampling from `bayeslm`, `bayesreg`, `monomvn`, and `rstan` packages  
-  - Functions for generating and normalizing data  
-  - Effective sample size computation and MCMC diagnostics  
-  - Horseshoe penalty and nested algorithms  
+These strategies improve posterior exploration by reducing dependence between parameters and accelerating convergence. Empirical results demonstrate that partial collapsing typically yields moderate gains, while nested Gibbs samplers can lead to substantial efficiency improvements over traditional two-block Gibbs samplers.
 
-- `data/` – Datasets used in the paper  
+The methods implemented here are scalable and allow Bayesian Lasso models with tens of thousands of predictors to be fitted in seconds to minutes. Extensions to the horseshoe prior are also included, with similar efficiency gains observed.
 
----
+## Main functionality
 
-## 📑 R Files
+The package provides fast implementations of Gibbs samplers for Bayesian linear regression models with shrinkage priors. Key functions include:
 
-- **benchmark_horseshoe_ngtp.Rmd**  
-  Benchmarks Bayesian Lasso when *n > p* using the horseshoe penalty. Runs the modified Park and Casella Gibbs sampler, nested Gibbs, two-block Gibbs, partially collapsed Gibbs, `bayeslm`, `bayesreg`, `monomvn`, and `rstan` algorithms.  
+- Bayesian Lasso Gibbs samplers using two-block, blocked, and partially collapsed updates
+- Penalized Gibbs samplers with different collapsing schemes for regression coefficients, variance, and penalty parameters
+- Nested Gibbs samplers for improved mixing in high-dimensional problems
+- Utilities for normalization and MCMC diagnostics
 
-- **benchmark_horseshoe_pgtn.Rmd**  
-  Benchmarks Bayesian Lasso when *p > n* using the horseshoe penalty. Includes Park and Casella Gibbs sampler, benchmarking functions for two-block, nested, and partially collapsed Gibbs samplers, and exact/approximate horseshoe (EHS/AHS).  
+See the package help index (`help(package = "FastGibbsSamplers")`) for a complete list of available functions and detailed documentation.
 
-- **benchmark_lasso_ngtp.Rmd**  
-  Benchmarks Bayesian Lasso when *n > p* using the Lasso penalty. Includes Park and Casella, nested Gibbs, two-block Gibbs, modified Hans Gibbs, partially collapsed Gibbs, `bayeslm`, `bayesreg`, `monomvn`, and `rstan`.  
+## Installation
 
-- **benchmark_lasso_pgtn.Rmd**  
-  Benchmarks Bayesian Lasso when *p > n* using the Lasso penalty. Similar to above, with additional algorithms included.  
+### CRAN (once released)
 
-- **create_tables.Rmd**  
-  Generates the tables provided in the paper.  
-
-- **benchmark_blasso_bayeslm.R**  
-  Samples from `bayeslm` (Lasso penalty).  
-
-- **benchmark_blasso_bayesreg.R**  
-  Samples from `bayesreg` (Lasso penalty).  
-
-- **benchmark_blasso_hans.R**  
-  Samples from the modified Hans Gibbs sampler.  
-
-- **benchmark_blasso_monomvn.R**  
-  Samples from `monomvn` (Lasso penalty).  
-
-- **benchmark_blasso_rstan.R**  
-  Samples from `rstan`.  
-
-- **benchmark_horseshoe_bayeslm.R**  
-  Samples from `bayeslm` (horseshoe penalty).  
-
-- **benchmark_horseshoe_bayesreg.R**  
-  Samples from `bayesreg` (horseshoe penalty).  
-
-- **benchmark_horseshoe_brms.R**  
-  Samples from `brm` in the `brms` package (Stan backend) with the horseshoe penalty.  
-
-- **benchmark_nested_gibbs.R**  
-  Implements the nested Gibbs sampler.  
-
-- **benchmark_2bg.R**  
-  Two-block Gibbs sampler:  
-  - `benchmark_blasso_2BG_beta_sigma2`: β and σ² in one block  
-  - `benchmark_blasso_2BG_beta_lambda2`: β and λ² in one block  
-
-- **benchmark_3bg.R**  
-  Three-block Gibbs sampler.  
-
-- **benchmark_4bg.R**  
-  Four-block Gibbs sampler.  
-
-- **benchmark_pcg.R**  
-  Partially Collapsed Gibbs samplers, where some conditional parameters are marginalized from the parent Gibbs sampler.  
-
+```r
+install.packages("FastGibbsSamplers")
