@@ -13,6 +13,14 @@ and nested Gibbs samplers for Bayesian Lasso, with a focus on
 computational efficiency when the number of predictors is large
 relative to the sample size.
 }
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/MJDavoudabadi/FastGibbsSamplers}
+  \item Report bugs at \url{https://github.com/MJDavoudabadi/FastGibbsSamplers}
+}
+
+}
 \author{
 \strong{Maintainer}: Mohammad Javad Davoudabadi \email{mohammad.davoudabadi@qut.edu.au} [copyright holder]
 
