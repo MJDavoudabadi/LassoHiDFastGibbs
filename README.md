@@ -37,4 +37,11 @@ You can install the stable release from CRAN with:
 
 ```r
 install.packages("FastGibbsSamplers")
+```
+### Development version
 
+The development version, which may include new features or bug fixes not yet released on CRAN, can be installed from GitHub:
+```r
+# install.packages("pak")
+pak::pak("MJDavoudabadi/FastGibbsSamplers")
+```
