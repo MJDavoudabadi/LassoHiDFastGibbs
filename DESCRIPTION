@@ -1,7 +1,7 @@
 Package: FastGibbsSamplers
 Type: Package
 Title: Fast Gibbs Samplers
-Version: 0.0.0.9000
+Version: 0.1.0
 Authors@R: c(person("John", "Ormerod",
            email = "john.ormerod@sydney.edu.au",
            role = "aut",
