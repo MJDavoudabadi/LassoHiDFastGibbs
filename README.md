@@ -1,3 +1,6 @@
+<img src="man/figures/logo.png" align="right" height="140" />
+
+
 # FastGibbsSamplers
 
 FastGibbsSamplers provides efficient Gibbs sampling algorithms for Bayesian Lasso and related shrinkage models, with a focus on improving mixing and scalability in high-dimensional settings.
