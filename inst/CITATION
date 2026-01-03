@@ -1,0 +1,19 @@
+citHeader("To cite FastGibbsSamplers in publications, please use:")
+
+citEntry(
+  entry  = "Manual",
+  title  = "FastGibbsSamplers: Blocked, Partially Collapsed, and Nested Gibbs Samplers for the Bayesian Lasso",
+  author = personList(
+    person("John", "Ormerod"),
+    person("Mohammad Javad", "Davoudabadi"),
+    person("Garth", "Tarr"),
+    person("Samuel", "Mueller")
+  ),
+  year   = "2026",
+  note   = "R package version 0.0.1",
+  url    = "https://github.com/MJDavoudabadi/FastGibbsSamplers",
+  textVersion =
+    "Ormerod, J., Davoudabadi, M. J., Tarr, G., and Mueller, S. (2026).
+     FastGibbsSamplers: Blocked, Partially Collapsed, and Nested Gibbs Samplers for the Bayesian Lasso.
+     R package version 0.0.1."
+)

@@ -2,12 +2,12 @@ Package: FastGibbsSamplers
 Type: Package
 Title: Fast Gibbs Samplers
 Version: 0.0.0.9000
-Authors@R: c(person("Mohammad Javad", "Davoudabadi",
-           email = "mohammad.davoudabadi@qut.edu.au",
-           role = c("aut", "cre", "cph")),person("John", "Ormerod",
+Authors@R: c(person("John", "Ormerod",
            email = "john.ormerod@sydney.edu.au",
            role = "aut",
-           comment = c(ORCID = "0000-0002-4650-7507")),
+           comment = c(ORCID = "0000-0002-4650-7507")),person("Mohammad Javad", "Davoudabadi",
+           email = "mohammad.davoudabadi@qut.edu.au",
+           role = c("aut", "cre", "cph")),
            person("Garth", "Tarr",
            email = "garth.tarr@gmail.com",
            role = "aut",
