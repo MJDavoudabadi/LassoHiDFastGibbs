@@ -57,5 +57,5 @@ If you use LassoHiDFastGibbs in your research, please cite it appropriately.
 You can obtain citation information directly from R:
 
 ```r
-citation("FastGibbsSamplers")
+citation("LassoHiDFastGibbs")
 ```
