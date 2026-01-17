@@ -3,7 +3,7 @@
 
 # FastGibbsSamplers
 
-FastGibbsSamplers provides efficient Gibbs sampling algorithms for Bayesian Lasso and related shrinkage models, with a focus on improving mixing and scalability in high-dimensional settings.
+LassoHiDFastGibbs provides efficient Gibbs sampling algorithms for Bayesian Lasso and related shrinkage models, with a focus on improving mixing and scalability in high-dimensional settings.
 
 This package accompanies the methodological work described in:
 
@@ -30,7 +30,7 @@ The package provides fast implementations of Gibbs samplers for Bayesian linear 
 - Nested Gibbs samplers for improved mixing in high-dimensional problems
 - Utilities for normalization and MCMC diagnostics
 
-See the package help index (`help(package = "FastGibbsSamplers")`) for a complete list of available functions and detailed documentation.
+See the package help index (`help(package = "LassoHiDFastGibbs")`) for a complete list of available functions and detailed documentation.
 
 ## Installation
 
@@ -39,20 +39,20 @@ See the package help index (`help(package = "FastGibbsSamplers")`) for a complet
 You can install the stable release from CRAN with:
 
 ```r
-install.packages("FastGibbsSamplers")
+install.packages("LassoHiDFastGibbs")
 ```
 ### Development version
 
 The development version, which may include new features or bug fixes not yet released on CRAN, can be installed from GitHub:
 ```r
 # install.packages("pak")
-pak::pak("MJDavoudabadi/FastGibbsSamplers")
+pak::pak("MJDavoudabadi/LassoHiDFastGibbs")
 ```
 
 
 ## Citation
 
-If you use FastGibbsSamplers in your research, please cite it appropriately.
+If you use LassoHiDFastGibbs in your research, please cite it appropriately.
 
 You can obtain citation information directly from R:
 
