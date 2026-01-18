@@ -1,0 +1,44 @@
+Package: LassoHiDFastGibbs
+Type: Package
+Title: Fast High-Dimensional Gibbs Samplers for Bayesian Lasso
+        Regression
+Version: 0.1.0
+Authors@R: c(person("John", "Ormerod",
+           email = "john.ormerod@sydney.edu.au",
+           role = "aut",
+           comment = c(ORCID = "0000-0002-4650-7507")),person("Mohammad Javad", "Davoudabadi",
+           email = "mohammad.davoudabadi@qut.edu.au",
+           role = c("aut", "cre", "cph")),
+           person("Garth", "Tarr",
+           email = "garth.tarr@gmail.com",
+           role = "aut",
+           comment = c(ORCID = "0000-0002-6605-7478")),
+           person("Samuel", "Mueller",
+           email = "samuel.mueller@sydney.edu.au",
+           role = "aut",
+           comment = c(ORCID = "0000-0002-3087-8127"))
+           )
+Description: Provides fast and scalable Gibbs sampling algorithms for 
+             Bayesian Lasso regression model in high-dimensional 
+             settings. The package implements efficient partially collapsed 
+             and nested Gibbs samplers for Bayesian Lasso, with a focus on 
+             computational efficiency when the number of predictors is large 
+             relative to the sample size. 
+License: GPL-3
+Encoding: UTF-8
+SystemRequirements: C++17
+Imports: Rcpp
+LinkingTo: Rcpp, RcppArmadillo, RcppEigen, RcppNumerical, RcppClock
+RoxygenNote: 7.3.2
+Suggests: posterior
+URL: https://github.com/MJDavoudabadi/LassoHiDFastGibbs
+BugReports: https://github.com/MJDavoudabadi/LassoHiDFastGibbs/issues
+NeedsCompilation: yes
+Packaged: 2026-01-18 07:57:44 UTC; davoudab
+Author: John Ormerod [aut] (<https://orcid.org/0000-0002-4650-7507>),
+  Mohammad Javad Davoudabadi [aut, cre, cph],
+  Garth Tarr [aut] (<https://orcid.org/0000-0002-6605-7478>),
+  Samuel Mueller [aut] (<https://orcid.org/0000-0002-3087-8127>)
+Maintainer: Mohammad Javad Davoudabadi <mohammad.davoudabadi@qut.edu.au>
+Built: R 4.4.3; x86_64-w64-mingw32; 2026-01-18 11:25:39 UTC; windows
+Archs: x64

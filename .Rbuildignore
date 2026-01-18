@@ -1,6 +1,6 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
-^FastGibbsSamplers\.Rproj$
+^LassoHiDFastGibbs\.Rproj$
 ^\.github$
 ^cran-comments\.md$
 
