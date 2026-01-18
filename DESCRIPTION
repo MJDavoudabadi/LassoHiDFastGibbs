@@ -31,5 +31,5 @@ Imports: Rcpp
 LinkingTo: Rcpp, RcppArmadillo, RcppEigen, RcppNumerical, RcppClock
 RoxygenNote: 7.3.2
 Suggests: posterior
-URL: https://github.com/MJDavoudabadi/LassoHiDFastGibbs
-BugReports: https://github.com/MJDavoudabadi/LassoHiDFastGibbs
+URL: https://github.com/MJDavoudabadi/LassoHiDFastGibbs, https://github.com/MJDavoudabadi/FastGibbsSamplers
+BugReports: https://github.com/MJDavoudabadi/LassoHiDFastGibbs/issues
