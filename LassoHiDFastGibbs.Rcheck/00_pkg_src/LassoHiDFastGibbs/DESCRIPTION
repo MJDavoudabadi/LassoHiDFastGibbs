@@ -2,7 +2,7 @@ Package: LassoHiDFastGibbs
 Type: Package
 Title: Fast High-Dimensional Gibbs Samplers for Bayesian Lasso
         Regression
-Version: 0.1.0
+Version: 0.1.2
 Authors@R: c(person("John", "Ormerod",
            email = "john.ormerod@sydney.edu.au",
            role = "aut",
@@ -34,7 +34,7 @@ Suggests: posterior
 URL: https://github.com/MJDavoudabadi/LassoHiDFastGibbs
 BugReports: https://github.com/MJDavoudabadi/LassoHiDFastGibbs/issues
 NeedsCompilation: yes
-Packaged: 2026-01-18 07:57:44 UTC; davoudab
+Packaged: 2026-01-18 12:44:12 UTC; davoudab
 Author: John Ormerod [aut] (<https://orcid.org/0000-0002-4650-7507>),
   Mohammad Javad Davoudabadi [aut, cre, cph],
   Garth Tarr [aut] (<https://orcid.org/0000-0002-6605-7478>),

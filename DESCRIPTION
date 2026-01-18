@@ -29,6 +29,7 @@ LazyData: true
 SystemRequirements: C++17
 Imports: Rcpp
 LinkingTo: Rcpp, RcppArmadillo, RcppEigen, RcppNumerical, RcppClock
+NeedsCompilation: yes
 RoxygenNote: 7.3.2
 Suggests: posterior
 URL: https://github.com/MJDavoudabadi/LassoHiDFastGibbs

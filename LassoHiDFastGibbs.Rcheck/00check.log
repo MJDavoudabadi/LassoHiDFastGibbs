@@ -9,9 +9,9 @@
 * using option '--as-cran'
 * checking for file 'LassoHiDFastGibbs/DESCRIPTION' ... OK
 * checking extension type ... Package
-* this is package 'LassoHiDFastGibbs' version '0.1.0'
+* this is package 'LassoHiDFastGibbs' version '0.1.2'
 * package encoding: UTF-8
-* checking CRAN incoming feasibility ... [79s] NOTE
+* checking CRAN incoming feasibility ... [66s] NOTE
 Maintainer: 'Mohammad Javad Davoudabadi <mohammad.davoudabadi@qut.edu.au>'
 
 New submission
@@ -23,7 +23,7 @@ New submission
 * checking for hidden files and directories ... OK
 * checking for portable file names ... OK
 * checking serialization versions ... OK
-* checking whether package 'LassoHiDFastGibbs' can be installed ... [133s] OK
+* checking whether package 'LassoHiDFastGibbs' can be installed ... [174s] OK
 * used C++ compiler: 'G__~1.EXE (GCC) 13.3.0'
 * checking C++ specification ... OK
   Not all R platforms support C++17
