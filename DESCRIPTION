@@ -1,7 +1,7 @@
 Package: LassoHiDFastGibbs
 Type: Package
 Title: Fast High-Dimensional Gibbs Samplers for Bayesian Lasso Regression
-Version: 0.1.1
+Version: 0.1.2
 Authors@R: c(person("John", "Ormerod",
            email = "john.ormerod@sydney.edu.au",
            role = "aut",
