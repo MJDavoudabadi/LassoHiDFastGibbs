@@ -66,7 +66,7 @@ The outputs are:
 # Select a dataset name
 
 ```{r}
-library(FastGibbsSamplers)
+library(LassoHiDFastGibbs)
 
 # if (!requireNamespace("mlbench", quietly = TRUE)) {
 #   knitr::knit_exit()

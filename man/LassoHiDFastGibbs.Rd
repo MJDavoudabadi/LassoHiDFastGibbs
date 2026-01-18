@@ -17,7 +17,7 @@ relative to the sample size.
 Useful links:
 \itemize{
   \item \url{https://github.com/MJDavoudabadi/LassoHiDFastGibbs}
-  \item Report bugs at \url{https://github.com/MJDavoudabadi/LassoHiDFastGibbs}
+  \item Report bugs at \url{https://github.com/MJDavoudabadi/LassoHiDFastGibbs/issues}
 }
 
 }

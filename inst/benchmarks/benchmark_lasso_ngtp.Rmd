@@ -116,7 +116,7 @@ The outputs are:
 
 ```{r}
 
-library(FastGibbsSamplers)
+library(LassoHiDFastGibbs)
 
 
 # Set prior hyperparameter constants

@@ -89,7 +89,7 @@ The outputs are:
 
 ```{r}
 
-library(FastGibbsSamplers)
+library(LassoHiDFastGibbs)
 
 # Set prior hyperparameter constants
 a = 1.0E-2  # Prior shape for sigma2
