@@ -31,4 +31,9 @@ Authors:
   \item Samuel Mueller \email{samuel.mueller@sydney.edu.au} (\href{https://orcid.org/0000-0002-3087-8127}{ORCID})
 }
 
+Other contributors:
+\itemize{
+  \item Jonathon Tidswell (Contributed code to src/lasso_distribution.cpp (originally from BayesianLasso package)) [contributor]
+}
+
 }
