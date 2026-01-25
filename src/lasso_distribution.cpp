@@ -19,6 +19,11 @@ using namespace arma;
 using namespace Numer;
 using namespace std;
 
+// NOTE:
+// This file contains code originally developed for the BayesianLasso package.
+// Portions were authored by Jonathon Tidswell, John Ormerod, Mohammad Javad Davoudabadi, Garth Tarr, and Samuel Mueller.
+// Included here with attribution preserved.
+
 ////////////////////////////////////////////////////////////////////////////////
 
 // The inverse logit function
