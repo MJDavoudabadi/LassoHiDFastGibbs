@@ -10,6 +10,6 @@ bibentry(
     person("Samuel", "Mueller")
   ),
   year    = "2026",
-  note    = "R package version 0.1.0",
+  note    = "R package version 0.1.4",
   url     = "https://github.com/MJDavoudabadi/LassoHiDFastGibbs"
 )
