@@ -16,17 +16,28 @@ The purpose of this repository is to **reproduce the results presented in the re
   - Code for sampling from the Lasso distribution
 
 - `R/` – R scripts implementing:
-  - PC, Hans, two-block, three-block, and four-block Gibbs sampling algorithms  
-  - Functions for sampling from `bayeslm`, `bayesreg`, `monomvn`, and `rstan` packages  
+  - PCG, two-block, and nested Gibbs sampling algorithms  
   - Functions for generating and normalizing data  
   - Effective sample size computation and MCMC diagnostics  
-  - Horseshoe penalty and nested algorithms  
 
-- `data/` – Datasets used in the paper  
+- `inst/benchmarks` – Rmd scripts for:
+  - Benchmarks Bayesian Lasso when *n > p* using the horseshoe and Lasso penalties
+  - Benchmarks Bayesian Lasso when *p > n* using the horseshoe and Lasso penalties
+ 
+- `inst/benchmarks/helpers` – R scripts implementing:
+  - Functions for sampling from `bayeslm`, `bayesreg`, `monomvn`, and `rstan` packages
+  - Three-block, and four-block Gibbs sampling algorithms
+  - Functions for generating and normalizing datasets
+
+- `inst/paper` – R script implementing:
+  -  Generates the tables provided in the paper
+
+- `inst/extdata` – Datasets used in the paper  
 
 ---
 
-## 📑 R Files
+## 📑 Rmd Files
+- `inst/benchmarks` – Rmd scripts for:
 
 - **benchmark_horseshoe_ngtp.Rmd**  
   Benchmarks Bayesian Lasso when *n > p* using the horseshoe penalty. Runs the modified Park and Casella Gibbs sampler, nested Gibbs, two-block Gibbs, partially collapsed Gibbs, `bayeslm`, `bayesreg`, `monomvn`, and `rstan` algorithms.  
@@ -40,9 +51,19 @@ The purpose of this repository is to **reproduce the results presented in the re
 - **benchmark_lasso_pgtn.Rmd**  
   Benchmarks Bayesian Lasso when *p > n* using the Lasso penalty. Similar to above, with additional algorithms included.  
 
-- **create_tables.Rmd**  
-  Generates the tables provided in the paper.  
 
+## 📑 R Files
+- `inst/benchmarks/helpers` – R scripts for:
+
+- **benchmark_3bg.R**  
+  Three-block Gibbs sampler.  
+
+- **benchmark_4bg.R**  
+  Four-block Gibbs sampler.
+
+- **benchmark_EHS.R**
+  Samples from 'Mhorseshoe'
+  
 - **benchmark_blasso_bayeslm.R**  
   Samples from `bayeslm` (Lasso penalty).  
 
@@ -56,7 +77,10 @@ The purpose of this repository is to **reproduce the results presented in the re
   Samples from `monomvn` (Lasso penalty).  
 
 - **benchmark_blasso_rstan.R**  
-  Samples from `rstan`.  
+  Samples from `rstan`.
+
+ - **benchmark_horseshoe.R**
+   Samples from 'horseshoe' package
 
 - **benchmark_horseshoe_bayeslm.R**  
   Samples from `bayeslm` (horseshoe penalty).  
@@ -65,22 +89,18 @@ The purpose of this repository is to **reproduce the results presented in the re
   Samples from `bayesreg` (horseshoe penalty).  
 
 - **benchmark_horseshoe_brms.R**  
-  Samples from `brm` in the `brms` package (Stan backend) with the horseshoe penalty.  
+  Samples from `brm` in the `brms` package (Stan backend) with the horseshoe penalty.
 
-- **benchmark_nested_gibbs.R**  
+`R/` – R scripts implementing:  
+
+- **penalized_nested_Gibbs.R**  
   Implements the nested Gibbs sampler.  
 
-- **benchmark_2bg.R**  
+- **2bg_Gibbs.R**  
   Two-block Gibbs sampler:  
   - `benchmark_blasso_2BG_beta_sigma2`: β and σ² in one block  
-  - `benchmark_blasso_2BG_beta_lambda2`: β and λ² in one block  
-
-- **benchmark_3bg.R**  
-  Three-block Gibbs sampler.  
-
-- **benchmark_4bg.R**  
-  Four-block Gibbs sampler.  
-
-- **benchmark_pcg.R**  
+  - `benchmark_blasso_2BG_beta_lambda2`: β and λ² in one block
+  
+- **penalized_pcg.R**  
   Partially Collapsed Gibbs samplers, where some conditional parameters are marginalized from the parent Gibbs sampler.  
 
