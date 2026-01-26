@@ -55,52 +55,52 @@ The purpose of this repository is to **reproduce the results presented in the re
 ## 📑 R Files
 - `inst/benchmarks/helpers` – R scripts for:
 
-- **benchmark_3bg.R**  
-  Three-block Gibbs sampler.  
+  - **benchmark_3bg.R**  
+    Three-block Gibbs sampler.  
 
-- **benchmark_4bg.R**  
-  Four-block Gibbs sampler.
+  - **benchmark_4bg.R**  
+    Four-block Gibbs sampler.
 
-- **benchmark_EHS.R**
-  Samples from 'Mhorseshoe'
+  - **benchmark_EHS.R**
+    Samples from 'Mhorseshoe'
   
-- **benchmark_blasso_bayeslm.R**  
-  Samples from `bayeslm` (Lasso penalty).  
+  - **benchmark_blasso_bayeslm.R**  
+    Samples from `bayeslm` (Lasso penalty).  
 
-- **benchmark_blasso_bayesreg.R**  
-  Samples from `bayesreg` (Lasso penalty).  
+  - **benchmark_blasso_bayesreg.R**  
+    Samples from `bayesreg` (Lasso penalty).  
 
-- **benchmark_blasso_hans.R**  
-  Samples from the modified Hans Gibbs sampler.  
+  - **benchmark_blasso_hans.R**  
+    Samples from the modified Hans Gibbs sampler.  
 
-- **benchmark_blasso_monomvn.R**  
-  Samples from `monomvn` (Lasso penalty).  
+  - **benchmark_blasso_monomvn.R**  
+    Samples from `monomvn` (Lasso penalty).  
 
-- **benchmark_blasso_rstan.R**  
-  Samples from `rstan`.
+  - **benchmark_blasso_rstan.R**  
+    Samples from `rstan`.
 
- - **benchmark_horseshoe.R**
-   Samples from 'horseshoe' package
+   - **benchmark_horseshoe.R**
+     Samples from 'horseshoe' package.
 
-- **benchmark_horseshoe_bayeslm.R**  
-  Samples from `bayeslm` (horseshoe penalty).  
+  - **benchmark_horseshoe_bayeslm.R**  
+    Samples from `bayeslm` (horseshoe penalty).  
 
-- **benchmark_horseshoe_bayesreg.R**  
-  Samples from `bayesreg` (horseshoe penalty).  
+  - **benchmark_horseshoe_bayesreg.R**  
+    Samples from `bayesreg` (horseshoe penalty).  
 
-- **benchmark_horseshoe_brms.R**  
-  Samples from `brm` in the `brms` package (Stan backend) with the horseshoe penalty.
+  - **benchmark_horseshoe_brms.R**  
+    Samples from `brm` in the `brms` package (Stan backend) with the horseshoe penalty.
 
-`R/` – R scripts implementing:  
+-`R/` – R scripts implementing:  
 
-- **penalized_nested_Gibbs.R**  
-  Implements the nested Gibbs sampler.  
+  - **penalized_nested_Gibbs.R**  
+    Implements the nested Gibbs sampler.  
 
-- **2bg_Gibbs.R**  
-  Two-block Gibbs sampler:  
-  - `benchmark_blasso_2BG_beta_sigma2`: β and σ² in one block  
-  - `benchmark_blasso_2BG_beta_lambda2`: β and λ² in one block
+  - **2bg_Gibbs.R**  
+    Two-block Gibbs sampler:  
+    - `benchmark_blasso_2BG_beta_sigma2`: β and σ² in one block  
+    - `benchmark_blasso_2BG_beta_lambda2`: β and λ² in one block
   
-- **penalized_pcg.R**  
-  Partially Collapsed Gibbs samplers, where some conditional parameters are marginalized from the parent Gibbs sampler.  
+  - **penalized_pcg.R**  
+    Partially Collapsed Gibbs samplers, where some conditional parameters are marginalized from the parent Gibbs sampler.  
 
