@@ -8,6 +8,23 @@ The purpose of this repository is to **reproduce the results presented in the re
 
 ---
 
+## Installation
+
+The CRAN version provides a stable release. The development version on the
+`master` branch corresponds to the implementation used in the accompanying manuscript.
+
+```r
+if (!requireNamespace("remotes", quietly = TRUE)) {
+  install.packages("remotes")
+}
+
+remotes::install_github("MJDavoudabadi/LassoHiDFastGibbs", ref = "master")
+markdown
+Copy code
+
+---
+
+
 ## 📂 Repository Structure
 
 - `cpp/` – C++ scripts for:
@@ -103,21 +120,3 @@ The purpose of this repository is to **reproduce the results presented in the re
   
   - **penalized_pcg.R**  
     Partially Collapsed Gibbs samplers, where some conditional parameters are marginalized from the parent Gibbs sampler.  
-
-
-## Installation
-
-The CRAN version provides a stable release. The development version on the
-`master` branch corresponds to the implementation used in the accompanying manuscript.
-
-```r
-if (!requireNamespace("remotes", quietly = TRUE)) {
-  install.packages("remotes")
-}
-
-remotes::install_github("MJDavoudabadi/LassoHiDFastGibbs", ref = "master")
-markdown
-Copy code
-
----
-
