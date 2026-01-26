@@ -21,7 +21,7 @@ if (!requireNamespace("remotes", quietly = TRUE)) {
 remotes::install_github("MJDavoudabadi/LassoHiDFastGibbs", ref = "master")
 markdown
 Copy code
-
+```
 ---
 
 
