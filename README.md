@@ -91,7 +91,7 @@ The purpose of this repository is to **reproduce the results presented in the re
   - **benchmark_horseshoe_brms.R**  
     Samples from `brm` in the `brms` package (Stan backend) with the horseshoe penalty.
 
--`R/` – R scripts implementing:  
+- `R/` – R scripts implementing:  
 
   - **penalized_nested_Gibbs.R**  
     Implements the nested Gibbs sampler.  
