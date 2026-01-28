@@ -127,7 +127,7 @@ dataset_name <- "BostonHousing2"
 
 ```{r}
 
-library(FastGibbsSamplers)
+library(LassoHiDFastGibbs)
 
 
 # Set prior hyperparameter constants

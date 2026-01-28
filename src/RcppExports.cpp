@@ -14,7 +14,7 @@ Rcpp::Rostream<false>& Rcpp::Rcerr = Rcpp::Rcpp_cerr_get();
 
 // blasso_2bg_vbeta_sigma2
 Rcpp::List blasso_2bg_vbeta_sigma2(const arma::vec& vy, const arma::mat& mX, const double& a, const double& b, const double& u, const double& v, const int& nsamples, const double& lambda_init, const double& sigma2_init, const int& verbose);
-RcppExport SEXP _FastGibbsSamplers_blasso_2bg_vbeta_sigma2(SEXP vySEXP, SEXP mXSEXP, SEXP aSEXP, SEXP bSEXP, SEXP uSEXP, SEXP vSEXP, SEXP nsamplesSEXP, SEXP lambda_initSEXP, SEXP sigma2_initSEXP, SEXP verboseSEXP) {
+RcppExport SEXP _LassoHiDFastGibbs_blasso_2bg_vbeta_sigma2(SEXP vySEXP, SEXP mXSEXP, SEXP aSEXP, SEXP bSEXP, SEXP uSEXP, SEXP vSEXP, SEXP nsamplesSEXP, SEXP lambda_initSEXP, SEXP sigma2_initSEXP, SEXP verboseSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -34,7 +34,7 @@ END_RCPP
 }
 // blasso_2bg_vbeta_lambda2
 Rcpp::List blasso_2bg_vbeta_lambda2(const arma::vec& vy, const arma::mat& mX, const double& a, const double& b, const double& u, const double& v, const int& nsamples, const double& lambda_init, const double& sigma2_init, const arma::vec& va_init, const int& verbose, const double& lower, const double& upper);
-RcppExport SEXP _FastGibbsSamplers_blasso_2bg_vbeta_lambda2(SEXP vySEXP, SEXP mXSEXP, SEXP aSEXP, SEXP bSEXP, SEXP uSEXP, SEXP vSEXP, SEXP nsamplesSEXP, SEXP lambda_initSEXP, SEXP sigma2_initSEXP, SEXP va_initSEXP, SEXP verboseSEXP, SEXP lowerSEXP, SEXP upperSEXP) {
+RcppExport SEXP _LassoHiDFastGibbs_blasso_2bg_vbeta_lambda2(SEXP vySEXP, SEXP mXSEXP, SEXP aSEXP, SEXP bSEXP, SEXP uSEXP, SEXP vSEXP, SEXP nsamplesSEXP, SEXP lambda_initSEXP, SEXP sigma2_initSEXP, SEXP va_initSEXP, SEXP verboseSEXP, SEXP lowerSEXP, SEXP upperSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -57,7 +57,7 @@ END_RCPP
 }
 // lasso_gibbs_modified_hans
 Rcpp::List lasso_gibbs_modified_hans(const arma::vec& vy, const arma::mat& mX, const double& a, const double& b, const double& u, const double& v, const int& nsamples, const arma::vec& vbeta_init, const double& lambda_init, const double& sigma2_init, int verbose, bool tune_lambda2, bool rao_blackwellization);
-RcppExport SEXP _FastGibbsSamplers_lasso_gibbs_modified_hans(SEXP vySEXP, SEXP mXSEXP, SEXP aSEXP, SEXP bSEXP, SEXP uSEXP, SEXP vSEXP, SEXP nsamplesSEXP, SEXP vbeta_initSEXP, SEXP lambda_initSEXP, SEXP sigma2_initSEXP, SEXP verboseSEXP, SEXP tune_lambda2SEXP, SEXP rao_blackwellizationSEXP) {
+RcppExport SEXP _LassoHiDFastGibbs_lasso_gibbs_modified_hans(SEXP vySEXP, SEXP mXSEXP, SEXP aSEXP, SEXP bSEXP, SEXP uSEXP, SEXP vSEXP, SEXP nsamplesSEXP, SEXP vbeta_initSEXP, SEXP lambda_initSEXP, SEXP sigma2_initSEXP, SEXP verboseSEXP, SEXP tune_lambda2SEXP, SEXP rao_blackwellizationSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -80,7 +80,7 @@ END_RCPP
 }
 // lm_penalized_4bg
 Rcpp::List lm_penalized_4bg(const arma::vec& vy, const arma::mat& mX, const Rcpp::String penalty_type, const double& lambda_init, const double& sigma2_init, const double& a, const double& b, const double& u, const double& v, const int& nsamples, const int& verbose);
-RcppExport SEXP _FastGibbsSamplers_lm_penalized_4bg(SEXP vySEXP, SEXP mXSEXP, SEXP penalty_typeSEXP, SEXP lambda_initSEXP, SEXP sigma2_initSEXP, SEXP aSEXP, SEXP bSEXP, SEXP uSEXP, SEXP vSEXP, SEXP nsamplesSEXP, SEXP verboseSEXP) {
+RcppExport SEXP _LassoHiDFastGibbs_lm_penalized_4bg(SEXP vySEXP, SEXP mXSEXP, SEXP penalty_typeSEXP, SEXP lambda_initSEXP, SEXP sigma2_initSEXP, SEXP aSEXP, SEXP bSEXP, SEXP uSEXP, SEXP vSEXP, SEXP nsamplesSEXP, SEXP verboseSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -101,7 +101,7 @@ END_RCPP
 }
 // lm_penalized_3bg
 Rcpp::List lm_penalized_3bg(const arma::vec& vy, const arma::mat& mX, const Rcpp::String penalty_type, const double& lambda, const double& sigma2_init, const double& a, const double& b, const double& u, const double& v, const int& nsamples, const int& verbose);
-RcppExport SEXP _FastGibbsSamplers_lm_penalized_3bg(SEXP vySEXP, SEXP mXSEXP, SEXP penalty_typeSEXP, SEXP lambdaSEXP, SEXP sigma2_initSEXP, SEXP aSEXP, SEXP bSEXP, SEXP uSEXP, SEXP vSEXP, SEXP nsamplesSEXP, SEXP verboseSEXP) {
+RcppExport SEXP _LassoHiDFastGibbs_lm_penalized_3bg(SEXP vySEXP, SEXP mXSEXP, SEXP penalty_typeSEXP, SEXP lambdaSEXP, SEXP sigma2_initSEXP, SEXP aSEXP, SEXP bSEXP, SEXP uSEXP, SEXP vSEXP, SEXP nsamplesSEXP, SEXP verboseSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -122,7 +122,7 @@ END_RCPP
 }
 // lm_penalized_nested_gibbs
 Rcpp::List lm_penalized_nested_gibbs(const arma::vec& vy, const arma::mat& mX, const Rcpp::String penalty_type, const double& a, const double& b, const double& u, const double& v, const int& nsamples, const double& lambda_init, const arma::vec& va_init, const int& verbose, const double& lower, const double& upper, const int s_beta, const int s_siglam);
-RcppExport SEXP _FastGibbsSamplers_lm_penalized_nested_gibbs(SEXP vySEXP, SEXP mXSEXP, SEXP penalty_typeSEXP, SEXP aSEXP, SEXP bSEXP, SEXP uSEXP, SEXP vSEXP, SEXP nsamplesSEXP, SEXP lambda_initSEXP, SEXP va_initSEXP, SEXP verboseSEXP, SEXP lowerSEXP, SEXP upperSEXP, SEXP s_betaSEXP, SEXP s_siglamSEXP) {
+RcppExport SEXP _LassoHiDFastGibbs_lm_penalized_nested_gibbs(SEXP vySEXP, SEXP mXSEXP, SEXP penalty_typeSEXP, SEXP aSEXP, SEXP bSEXP, SEXP uSEXP, SEXP vSEXP, SEXP nsamplesSEXP, SEXP lambda_initSEXP, SEXP va_initSEXP, SEXP verboseSEXP, SEXP lowerSEXP, SEXP upperSEXP, SEXP s_betaSEXP, SEXP s_siglamSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -147,7 +147,7 @@ END_RCPP
 }
 // lm_penalized_pcg_lambda2_col_sigma2
 Rcpp::List lm_penalized_pcg_lambda2_col_sigma2(const arma::vec& vy, const arma::mat& mX, const Rcpp::String penalty_type, const double& a, const double& b, const double& u, const double& v, const int& nsamples, const double& lambda_init, const double& sigma2_init, const int& verbose);
-RcppExport SEXP _FastGibbsSamplers_lm_penalized_pcg_lambda2_col_sigma2(SEXP vySEXP, SEXP mXSEXP, SEXP penalty_typeSEXP, SEXP aSEXP, SEXP bSEXP, SEXP uSEXP, SEXP vSEXP, SEXP nsamplesSEXP, SEXP lambda_initSEXP, SEXP sigma2_initSEXP, SEXP verboseSEXP) {
+RcppExport SEXP _LassoHiDFastGibbs_lm_penalized_pcg_lambda2_col_sigma2(SEXP vySEXP, SEXP mXSEXP, SEXP penalty_typeSEXP, SEXP aSEXP, SEXP bSEXP, SEXP uSEXP, SEXP vSEXP, SEXP nsamplesSEXP, SEXP lambda_initSEXP, SEXP sigma2_initSEXP, SEXP verboseSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -168,7 +168,7 @@ END_RCPP
 }
 // lm_penalized_pcg_sigma2_col_lambda2
 Rcpp::List lm_penalized_pcg_sigma2_col_lambda2(const arma::vec& vy, const arma::mat& mX, const Rcpp::String penalty_type, const double& a, const double& b, const double& u, const double& v, const int& nsamples, const double& lambda_init, const arma::vec& va_init, const int& verbose, const double& lower, const double& upper);
-RcppExport SEXP _FastGibbsSamplers_lm_penalized_pcg_sigma2_col_lambda2(SEXP vySEXP, SEXP mXSEXP, SEXP penalty_typeSEXP, SEXP aSEXP, SEXP bSEXP, SEXP uSEXP, SEXP vSEXP, SEXP nsamplesSEXP, SEXP lambda_initSEXP, SEXP va_initSEXP, SEXP verboseSEXP, SEXP lowerSEXP, SEXP upperSEXP) {
+RcppExport SEXP _LassoHiDFastGibbs_lm_penalized_pcg_sigma2_col_lambda2(SEXP vySEXP, SEXP mXSEXP, SEXP penalty_typeSEXP, SEXP aSEXP, SEXP bSEXP, SEXP uSEXP, SEXP vSEXP, SEXP nsamplesSEXP, SEXP lambda_initSEXP, SEXP va_initSEXP, SEXP verboseSEXP, SEXP lowerSEXP, SEXP upperSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -191,7 +191,7 @@ END_RCPP
 }
 // blasso_pcg_lambda2_col_va
 Rcpp::List blasso_pcg_lambda2_col_va(const arma::vec& vy, const arma::mat& mX, const double& a, const double& b, const double& u, const double& v, const int& nsamples, const double& lambda_init, const double& sigma2_init, const int& verbose);
-RcppExport SEXP _FastGibbsSamplers_blasso_pcg_lambda2_col_va(SEXP vySEXP, SEXP mXSEXP, SEXP aSEXP, SEXP bSEXP, SEXP uSEXP, SEXP vSEXP, SEXP nsamplesSEXP, SEXP lambda_initSEXP, SEXP sigma2_initSEXP, SEXP verboseSEXP) {
+RcppExport SEXP _LassoHiDFastGibbs_blasso_pcg_lambda2_col_va(SEXP vySEXP, SEXP mXSEXP, SEXP aSEXP, SEXP bSEXP, SEXP uSEXP, SEXP vSEXP, SEXP nsamplesSEXP, SEXP lambda_initSEXP, SEXP sigma2_initSEXP, SEXP verboseSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -211,7 +211,7 @@ END_RCPP
 }
 // lm_penalized_pcg_sigma2_col_va
 Rcpp::List lm_penalized_pcg_sigma2_col_va(const arma::vec& vy, const arma::mat& mX, const double& a, const double& b, const double& u, const double& v, const int& nsamples, const double& lambda_init, const double& sigma2_init, const arma::vec& va_init, const int& verbose, const double& lower, const double& upper);
-RcppExport SEXP _FastGibbsSamplers_lm_penalized_pcg_sigma2_col_va(SEXP vySEXP, SEXP mXSEXP, SEXP aSEXP, SEXP bSEXP, SEXP uSEXP, SEXP vSEXP, SEXP nsamplesSEXP, SEXP lambda_initSEXP, SEXP sigma2_initSEXP, SEXP va_initSEXP, SEXP verboseSEXP, SEXP lowerSEXP, SEXP upperSEXP) {
+RcppExport SEXP _LassoHiDFastGibbs_lm_penalized_pcg_sigma2_col_va(SEXP vySEXP, SEXP mXSEXP, SEXP aSEXP, SEXP bSEXP, SEXP uSEXP, SEXP vSEXP, SEXP nsamplesSEXP, SEXP lambda_initSEXP, SEXP sigma2_initSEXP, SEXP va_initSEXP, SEXP verboseSEXP, SEXP lowerSEXP, SEXP upperSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -234,7 +234,7 @@ END_RCPP
 }
 // lm_penalized_pcg_vbeta_col_sigma2
 Rcpp::List lm_penalized_pcg_vbeta_col_sigma2(const arma::vec& vy, const arma::mat& mX, const Rcpp::String penalty_type, const double& a, const double& b, const double& u, const double& v, const int& nsamples, const double& lambda_init, const double& sigma2_init, const int& verbose);
-RcppExport SEXP _FastGibbsSamplers_lm_penalized_pcg_vbeta_col_sigma2(SEXP vySEXP, SEXP mXSEXP, SEXP penalty_typeSEXP, SEXP aSEXP, SEXP bSEXP, SEXP uSEXP, SEXP vSEXP, SEXP nsamplesSEXP, SEXP lambda_initSEXP, SEXP sigma2_initSEXP, SEXP verboseSEXP) {
+RcppExport SEXP _LassoHiDFastGibbs_lm_penalized_pcg_vbeta_col_sigma2(SEXP vySEXP, SEXP mXSEXP, SEXP penalty_typeSEXP, SEXP aSEXP, SEXP bSEXP, SEXP uSEXP, SEXP vSEXP, SEXP nsamplesSEXP, SEXP lambda_initSEXP, SEXP sigma2_initSEXP, SEXP verboseSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -255,7 +255,7 @@ END_RCPP
 }
 // lm_penalized_pcg_sigma2_col_vbeta
 Rcpp::List lm_penalized_pcg_sigma2_col_vbeta(const arma::vec& vy, const arma::mat& mX, const Rcpp::String penalty_type, const double& a, const double& b, const double& u, const double& v, const int& nsamples, const double& lambda_init, const arma::vec& va_init, const int& verbose, const double& lower, const double& upper);
-RcppExport SEXP _FastGibbsSamplers_lm_penalized_pcg_sigma2_col_vbeta(SEXP vySEXP, SEXP mXSEXP, SEXP penalty_typeSEXP, SEXP aSEXP, SEXP bSEXP, SEXP uSEXP, SEXP vSEXP, SEXP nsamplesSEXP, SEXP lambda_initSEXP, SEXP va_initSEXP, SEXP verboseSEXP, SEXP lowerSEXP, SEXP upperSEXP) {
+RcppExport SEXP _LassoHiDFastGibbs_lm_penalized_pcg_sigma2_col_vbeta(SEXP vySEXP, SEXP mXSEXP, SEXP penalty_typeSEXP, SEXP aSEXP, SEXP bSEXP, SEXP uSEXP, SEXP vSEXP, SEXP nsamplesSEXP, SEXP lambda_initSEXP, SEXP va_initSEXP, SEXP verboseSEXP, SEXP lowerSEXP, SEXP upperSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -278,7 +278,7 @@ END_RCPP
 }
 // zetaOneLentz_c
 double zetaOneLentz_c(double x, double tol, int maxiter);
-RcppExport SEXP _FastGibbsSamplers_zetaOneLentz_c(SEXP xSEXP, SEXP tolSEXP, SEXP maxiterSEXP) {
+RcppExport SEXP _LassoHiDFastGibbs_zetaOneLentz_c(SEXP xSEXP, SEXP tolSEXP, SEXP maxiterSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -291,23 +291,23 @@ END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
-    {"_FastGibbsSamplers_blasso_2bg_vbeta_sigma2", (DL_FUNC) &_FastGibbsSamplers_blasso_2bg_vbeta_sigma2, 10},
-    {"_FastGibbsSamplers_blasso_2bg_vbeta_lambda2", (DL_FUNC) &_FastGibbsSamplers_blasso_2bg_vbeta_lambda2, 13},
-    {"_FastGibbsSamplers_lasso_gibbs_modified_hans", (DL_FUNC) &_FastGibbsSamplers_lasso_gibbs_modified_hans, 13},
-    {"_FastGibbsSamplers_lm_penalized_4bg", (DL_FUNC) &_FastGibbsSamplers_lm_penalized_4bg, 11},
-    {"_FastGibbsSamplers_lm_penalized_3bg", (DL_FUNC) &_FastGibbsSamplers_lm_penalized_3bg, 11},
-    {"_FastGibbsSamplers_lm_penalized_nested_gibbs", (DL_FUNC) &_FastGibbsSamplers_lm_penalized_nested_gibbs, 15},
-    {"_FastGibbsSamplers_lm_penalized_pcg_lambda2_col_sigma2", (DL_FUNC) &_FastGibbsSamplers_lm_penalized_pcg_lambda2_col_sigma2, 11},
-    {"_FastGibbsSamplers_lm_penalized_pcg_sigma2_col_lambda2", (DL_FUNC) &_FastGibbsSamplers_lm_penalized_pcg_sigma2_col_lambda2, 13},
-    {"_FastGibbsSamplers_blasso_pcg_lambda2_col_va", (DL_FUNC) &_FastGibbsSamplers_blasso_pcg_lambda2_col_va, 10},
-    {"_FastGibbsSamplers_lm_penalized_pcg_sigma2_col_va", (DL_FUNC) &_FastGibbsSamplers_lm_penalized_pcg_sigma2_col_va, 13},
-    {"_FastGibbsSamplers_lm_penalized_pcg_vbeta_col_sigma2", (DL_FUNC) &_FastGibbsSamplers_lm_penalized_pcg_vbeta_col_sigma2, 11},
-    {"_FastGibbsSamplers_lm_penalized_pcg_sigma2_col_vbeta", (DL_FUNC) &_FastGibbsSamplers_lm_penalized_pcg_sigma2_col_vbeta, 13},
-    {"_FastGibbsSamplers_zetaOneLentz_c", (DL_FUNC) &_FastGibbsSamplers_zetaOneLentz_c, 3},
+    {"_LassoHiDFastGibbs_blasso_2bg_vbeta_sigma2", (DL_FUNC) &_LassoHiDFastGibbs_blasso_2bg_vbeta_sigma2, 10},
+    {"_LassoHiDFastGibbs_blasso_2bg_vbeta_lambda2", (DL_FUNC) &_LassoHiDFastGibbs_blasso_2bg_vbeta_lambda2, 13},
+    {"_LassoHiDFastGibbs_lasso_gibbs_modified_hans", (DL_FUNC) &_LassoHiDFastGibbs_lasso_gibbs_modified_hans, 13},
+    {"_LassoHiDFastGibbs_lm_penalized_4bg", (DL_FUNC) &_LassoHiDFastGibbs_lm_penalized_4bg, 11},
+    {"_LassoHiDFastGibbs_lm_penalized_3bg", (DL_FUNC) &_LassoHiDFastGibbs_lm_penalized_3bg, 11},
+    {"_LassoHiDFastGibbs_lm_penalized_nested_gibbs", (DL_FUNC) &_LassoHiDFastGibbs_lm_penalized_nested_gibbs, 15},
+    {"_LassoHiDFastGibbs_lm_penalized_pcg_lambda2_col_sigma2", (DL_FUNC) &_LassoHiDFastGibbs_lm_penalized_pcg_lambda2_col_sigma2, 11},
+    {"_LassoHiDFastGibbs_lm_penalized_pcg_sigma2_col_lambda2", (DL_FUNC) &_LassoHiDFastGibbs_lm_penalized_pcg_sigma2_col_lambda2, 13},
+    {"_LassoHiDFastGibbs_blasso_pcg_lambda2_col_va", (DL_FUNC) &_LassoHiDFastGibbs_blasso_pcg_lambda2_col_va, 10},
+    {"_LassoHiDFastGibbs_lm_penalized_pcg_sigma2_col_va", (DL_FUNC) &_LassoHiDFastGibbs_lm_penalized_pcg_sigma2_col_va, 13},
+    {"_LassoHiDFastGibbs_lm_penalized_pcg_vbeta_col_sigma2", (DL_FUNC) &_LassoHiDFastGibbs_lm_penalized_pcg_vbeta_col_sigma2, 11},
+    {"_LassoHiDFastGibbs_lm_penalized_pcg_sigma2_col_vbeta", (DL_FUNC) &_LassoHiDFastGibbs_lm_penalized_pcg_sigma2_col_vbeta, 13},
+    {"_LassoHiDFastGibbs_zetaOneLentz_c", (DL_FUNC) &_LassoHiDFastGibbs_zetaOneLentz_c, 3},
     {NULL, NULL, 0}
 };
 
-RcppExport void R_init_FastGibbsSamplers(DllInfo *dll) {
+RcppExport void R_init_LassoHiDFastGibbs(DllInfo *dll) {
     R_registerRoutines(dll, NULL, CallEntries, NULL, NULL);
     R_useDynamicSymbols(dll, FALSE);
 }

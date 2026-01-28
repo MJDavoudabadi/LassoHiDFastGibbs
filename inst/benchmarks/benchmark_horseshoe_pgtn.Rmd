@@ -97,7 +97,7 @@ dataset_name <- "eyedata"
 
 ```{r}
 
-library(FastGibbsSamplers)
+library(LassoHiDFastGibbs)
 
 
 # Set prior hyperparameter constants

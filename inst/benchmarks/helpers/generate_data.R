@@ -1,5 +1,5 @@
 # ------------------------------------------------------------------------------
-# FastGibbsSamplers: data generators used for benchmarks / paper reproducibility
+# LassoHiDFastGibbs: data generators used for benchmarks / paper reproducibility
 # CRAN-safe: uses system.file() for inst/extdata and requireNamespace() for
 # optional suggested packages.
 # ------------------------------------------------------------------------------
@@ -7,9 +7,9 @@
 # Internal helper: locate a file shipped in inst/extdata
 .get_extdata_path <- function(fname, subdir = NULL) {
   f <- if (is.null(subdir)) {
-    system.file("extdata", fname, package = "FastGibbsSamplers")
+    system.file("extdata", fname, package = "LassoHiDFastGibbs")
   } else {
-    system.file("extdata", subdir, fname, package = "FastGibbsSamplers")
+    system.file("extdata", subdir, fname, package = "LassoHiDFastGibbs")
   }
 
   if (identical(f, "")) {

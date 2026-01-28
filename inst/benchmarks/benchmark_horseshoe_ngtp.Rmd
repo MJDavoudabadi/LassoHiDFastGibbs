@@ -68,7 +68,7 @@ The outputs are:
 # Select a dataset name
 
 ```{r}
-library(FastGibbsSamplers)
+library(LassoHiDFastGibbs)
 
 if (!requireNamespace("mlbench", quietly = TRUE)) {
   knitr::knit_exit()
@@ -299,7 +299,7 @@ plot_density_pairs(res_4BG, res_pcg_sb)
 res_horseshoe <- NULL
 
 if (requireNamespace("horseshoe", quietly = TRUE)) {
-  res_horseshoe = FastGibbsSamplers:::benchmark_horseshoe(vy, mX,
+  res_horseshoe = LassoHiDFastGibbs:::benchmark_horseshoe(vy, mX,
                                                           lambda_init, sigma2_init, a, b, u, v, 
                                                           nburn, nsamples, trials=1, 
                                                           beta_inds=res_4BG$beta_inds) 
@@ -315,7 +315,7 @@ if (requireNamespace("horseshoe", quietly = TRUE)) {
 res_bayeslm <- NULL 
 
 if (requireNamespace("bayeslm", quietly = TRUE)) {
-  res_bayeslm = FastGibbsSamplers:::benchmark_horseshoe_bayeslm(vy, mX,
+  res_bayeslm = LassoHiDFastGibbs:::benchmark_horseshoe_bayeslm(vy, mX,
                                                                 lambda_init, sigma2_init, a, b, u, v, 
                                                                 nburn, nsamples, trials, 
                                                                 beta_inds=res_4BG$beta_inds) 
@@ -331,7 +331,7 @@ if (requireNamespace("bayeslm", quietly = TRUE)) {
 res_brms <- NULL
 
 if (requireNamespace("brms", quietly = TRUE)) {
-  res_brms = FastGibbsSamplers:::benchmark_horseshoe_brms(vy, mX,
+  res_brms = LassoHiDFastGibbs:::benchmark_horseshoe_brms(vy, mX,
                                                           lambda_init, sigma2_init, a, b, u, v, 
                                                           nburn, nsamples, trials=1, 
                                                           beta_inds=res_4BG$beta_inds) 
@@ -347,7 +347,7 @@ if (requireNamespace("brms", quietly = TRUE)) {
 res_bayesreg <- NULL
 
 if (requireNamespace("bayesreg", quietly = TRUE)) {
-  res_bayesreg = FastGibbsSamplers:::benchmark_horseshoe_bayesreg(vy, mX,
+  res_bayesreg = LassoHiDFastGibbs:::benchmark_horseshoe_bayesreg(vy, mX,
                                                                   lambda_init, sigma2_init, a, b, u, v, 
                                                                   nburn, nsamples, trials, 
                                                                   beta_inds=res_4BG$beta_inds) 

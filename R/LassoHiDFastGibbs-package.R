@@ -6,8 +6,8 @@
 #' and nested Gibbs samplers for Bayesian Lasso, with a focus on
 #' computational efficiency when the number of predictors is large
 #' relative to the sample size.
-#' @name FastGibbsSamplers
+#' @name LassoHiDFastGibbs
 #' @docType package
-#' @useDynLib FastGibbsSamplers, .registration = TRUE
+@useDynLib LassoHiDFastGibbs, .registration = TRUE
 #' @importFrom Rcpp sourceCpp
 "_PACKAGE"
