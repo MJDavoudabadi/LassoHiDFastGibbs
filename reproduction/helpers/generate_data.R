@@ -239,7 +239,6 @@ generate_data <- function(dataset_name) {
     }
     data("BostonHousing", package = "mlbench")
     BostonHousing <- stats::na.omit(BostonHousing)
-
     x <- stats::model.matrix(medv ~ .^2, data = BostonHousing)[, -1, drop = FALSE]
     y <- as.numeric(BostonHousing[, "medv"])
 

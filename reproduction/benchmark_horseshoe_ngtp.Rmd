@@ -17,30 +17,30 @@ knitr::opts_chunk$set(echo = TRUE,
 ```
 
 ```{r load-helpers, include=FALSE}
-dir.create("reproduction/helpers", recursive = TRUE, showWarnings = FALSE)
+helpers_dir <- file.path(dirname(knitr::current_input()), "helpers")
 
-file.copy(
-  from = c("inst/benchmarks/helpers/benchmark_3bg.R",
-           "inst/benchmarks/helpers/benchmark_4bg.R",
-           "inst/benchmarks/helpers/benchmark_blasso_bayeslm.R",
-           "inst/benchmarks/helpers/benchmark_blasso_bayesreg.R",
-           "inst/benchmarks/helpers/benchmark_blasso_hans.R",
-           "inst/benchmarks/helpers/benchmark_blasso_monomvn.R",
-           "inst/benchmarks/helpers/benchmark_blasso_rstan.R",
-           "inst/benchmarks/helpers/benchmark_EHS.R",
-           "inst/benchmarks/helpers/benchmark_horseshoe.R",
-           "inst/benchmarks/helpers/benchmark_horseshoe_bayeslm.R",
-           "inst/benchmarks/helpers/benchmark_horseshoe_bayesreg.R",
-           "inst/benchmarks/helpers/benchmark_horseshoe_brms.R",
-           "inst/benchmarks/helpers/generate_data.R",
-           "inst/benchmarks/helpers/plot_densities.R",
-           # these two are in R/
-           "R/effective_sample_size.R",
-           "R/mcmc_stats.R"),
-  to = "reproduction/helpers",
-  overwrite = TRUE
+helper_files <- c(
+  "benchmark_3bg.R",
+  "benchmark_4bg.R",
+  "benchmark_blasso_bayeslm.R",
+  "benchmark_blasso_bayesreg.R",
+  "benchmark_blasso_hans.R",
+  "benchmark_blasso_monomvn.R",
+  "benchmark_blasso_rstan.R",
+  "benchmark_EHS.R",
+  "benchmark_horseshoe.R",
+  "benchmark_horseshoe_bayeslm.R",
+  "benchmark_horseshoe_bayesreg.R",
+  "benchmark_horseshoe_brms.R",
+  "effective_sample_size.R",
+  "generate_data.R",
+  "mcmc_stats.R",
+  "plot_densities.R"
 )
 
+for (f in helper_files) {
+  source(file.path(helpers_dir, f))
+}
 ```
 
 # Load R scripts
