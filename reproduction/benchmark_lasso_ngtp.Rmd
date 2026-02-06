@@ -15,6 +15,13 @@ knitr::opts_chunk$set(echo = TRUE,
   fig.height = 5)
 ```
 
+```{r load-package, include=FALSE}
+library(LassoHiDFastGibbs)
+
+pkg_root <- normalizePath(file.path(dirname(knitr::current_input()), ".."))
+devtools::load_all(pkg_root)
+
+```
 
 
 ```{r load-helpers, include=FALSE}

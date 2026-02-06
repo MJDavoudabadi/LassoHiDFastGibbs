@@ -1,4 +1,4 @@
-
+#' @export
 benchmark_pcg_lambda2_col_sigma2 <- function(
     vy,
     mX,
@@ -52,7 +52,7 @@ benchmark_pcg_lambda2_col_sigma2 <- function(
 }
 
 ################################################################################
-
+#' @export
 benchmark_pcg_sigma2_col_lambda2 <- function(
     vy,
     mX,
@@ -109,7 +109,7 @@ benchmark_pcg_sigma2_col_lambda2 <- function(
 
 
 ################################################################################
-
+#' @export
 benchmark_blasso_pcg_lambda2_col_va <- function(
     vy,
     mX,
@@ -162,7 +162,7 @@ benchmark_blasso_pcg_lambda2_col_va <- function(
 }
 
 ################################################################################
-
+#' @export
 benchmark_blasso_pcg_sigma2_col_va <- function(
     vy,
     mX,
@@ -221,7 +221,7 @@ benchmark_blasso_pcg_sigma2_col_va <- function(
 
 
 ################################################################################
-
+#' @export
 benchmark_pcg_vbeta_col_sigma2 <- function(
     vy,
     mX,
@@ -276,7 +276,7 @@ benchmark_pcg_vbeta_col_sigma2 <- function(
 }
 
 ################################################################################
-
+#' @export
 benchmark_pcg_sigma2_col_vbeta <- function(
     vy,
     mX,

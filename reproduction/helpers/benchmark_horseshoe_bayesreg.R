@@ -1,5 +1,5 @@
 
-
+#' @export
 benchmark_horseshoe_bayesreg <- function(
     vy,
     mX,

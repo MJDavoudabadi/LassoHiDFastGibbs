@@ -1,5 +1,5 @@
 
-
+#' @export
 benchmark_blasso_monomvn <- function(
     vy,
     mX,
@@ -56,26 +56,26 @@ benchmark_blasso_monomvn <- function(
 
   if (isTRUE(plot)) {
     # Plot the acf for sigma2 and lambda2
-    acf(res_mcmc_last$s2[inds_use])
-    acf(res_mcmc_last$lambda2[inds_use])
+    acf(res_mcmc$s2[inds_use])
+    acf(res_mcmc$lambda2[inds_use])
 
     # Trace plots for sigma2 and lambda2
-    plot(res_mcmc_last$s2[inds_use], type = "l")
-    plot(res_mcmc_last$lambda2[inds_use], type = "l")
+    plot(res_mcmc$s2[inds_use], type = "l")
+    plot(res_mcmc$lambda2[inds_use], type = "l")
   }
 
 
   # Calculate the rhat values
   rhat_sigma2 <- NA_real_
   rhat_lambda2 <- NA_real_
-  if (isTRUE(compute_rhat)) {
-    if (!requireNamespace("posterior", quietly = TRUE)) {
-      message("Skipping R-hat: package 'posterior' is not installed.")
-    } else {
-      rhat_sigma2  <- posterior::rhat(res_mcmc$s2[inds_use])
-      rhat_lambda2 <- posterior::rhat(res_mcmc$lambda2[inds_use])
-    }
+  # if (isTRUE(compute_rhat)) {
+  if (!requireNamespace("posterior", quietly = TRUE)) {
+    message("Skipping R-hat: package 'posterior' is not installed.")
+  } else {
+    rhat_sigma2  <- posterior::rhat(res_mcmc$s2[inds_use])
+    rhat_lambda2 <- posterior::rhat(res_mcmc$lambda2[inds_use])
   }
+  # }
 
   if (any(is.na(beta_inds))) {
     vbeta_hat = apply(res_mcmc$beta[inds_use,],2,mean)

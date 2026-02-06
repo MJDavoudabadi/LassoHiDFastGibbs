@@ -1,4 +1,4 @@
-
+#' @export
 benchmark_nested_gibbs <- function(
     vy,
     mX,

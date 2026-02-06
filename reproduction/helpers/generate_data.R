@@ -247,9 +247,16 @@ generate_data <- function(dataset_name) {
     if (!requireNamespace("flare", quietly = TRUE)) {
       stop("Dataset 'eyedata' requires the 'flare' package.", call. = FALSE)
     }
-    data("eyedata", package = "flare")
-    x <- flare::eyedata$x
-    y <- flare::eyedata$y
+    ey <- new.env()
+    data("eyedata", package = "flare", envir = ey)
+
+    if (exists("eyedata", envir = ey)) {
+      x <- ey$eyedata$x
+      y <- ey$eyedata$y
+    } else {
+      x <- ey$x
+      y <- ey$y
+    }
 
   } else {
     stop("Unknown dataset_name: '", dataset_name, "'.", call. = FALSE)

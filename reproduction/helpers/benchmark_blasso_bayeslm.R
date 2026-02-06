@@ -1,5 +1,5 @@
 
-
+#' @export
 benchmark_blasso_bayeslm <- function(
     vy,
     mX,
@@ -62,12 +62,12 @@ benchmark_blasso_bayeslm <- function(
   # Optional plotting
   if (isTRUE(plot)) {
     # Plot the acf for sigma2 and lambda2
-    acf(res_mcmc_last$sigma[inds_use])
-    acf(res_mcmc_last$vglobal[inds_use])
+    acf(res_mcmc$sigma[inds_use])
+    acf(res_mcmc$vglobal[inds_use])
 
     # Trace plots for sigma2 and lambda2
-    plot(res_mcmc_last$sigma[inds_use], type = "l")
-    plot(res_mcmc_last$vglobal[inds_use], type = "l")
+    plot(res_mcmc$sigma[inds_use], type = "l")
+    plot(res_mcmc$vglobal[inds_use], type = "l")
   }
 
 
@@ -75,14 +75,14 @@ benchmark_blasso_bayeslm <- function(
   # Optional rhat (posterior)
   rhat_sigma2 <- NA_real_
   rhat_lambda2 <- NA_real_
-  if (isTRUE(compute_rhat)) {
-    if (!requireNamespace("posterior", quietly = TRUE)) {
-      message("Skipping R-hat: package 'posterior' is not installed.")
-    } else {
-      rhat_sigma2  <- posterior::rhat(res_mcmc_last$sigma[inds_use])
-      rhat_lambda2 <- posterior::rhat(res_mcmc_last$vglobal[inds_use])
-    }
+  # if (isTRUE(compute_rhat)) {
+  if (!requireNamespace("posterior", quietly = TRUE)) {
+    message("Skipping R-hat: package 'posterior' is not installed.")
+  } else {
+    rhat_sigma2  <- posterior::rhat(res_mcmc$sigma[inds_use])
+    rhat_lambda2 <- posterior::rhat(res_mcmc$vglobal[inds_use])
   }
+  # }
 
 
   if (any(is.na(beta_inds))) {

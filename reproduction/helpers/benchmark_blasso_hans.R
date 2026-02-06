@@ -1,4 +1,5 @@
 
+#' @export
 benchmark_blasso_hans <- function(
     vy,
     mX,
@@ -67,14 +68,14 @@ benchmark_blasso_hans <- function(
   # Optional rhat (posterior)
   rhat_sigma2 <- NA_real_
   rhat_lambda2 <- NA_real_
-  if (isTRUE(compute_rhat)) {
-    if (!requireNamespace("posterior", quietly = TRUE)) {
-      message("Skipping R-hat: package 'posterior' is not installed.")
-    } else {
-      rhat_sigma2  <- posterior::rhat(res_mcmc$vsigma2[inds_use])
-      rhat_lambda2 <- posterior::rhat(res_mcmc$vlambda2[inds_use])
-    }
+  # if (isTRUE(compute_rhat)) {
+  if (!requireNamespace("posterior", quietly = TRUE)) {
+    message("Skipping R-hat: package 'posterior' is not installed.")
+  } else {
+    rhat_sigma2  <- posterior::rhat(res_mcmc$vsigma2[inds_use])
+    rhat_lambda2 <- posterior::rhat(res_mcmc$vlambda2[inds_use])
   }
+  # }
 
   if (any(is.na(beta_inds))) {
     vbeta_hat = apply(res_mcmc$mBeta[inds_use,],2,mean)
