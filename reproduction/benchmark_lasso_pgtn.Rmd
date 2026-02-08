@@ -69,6 +69,8 @@ The outputs are:
 
 # Select a dataset name
 
+Note that for fitting the models to a specific data set uncomment the dataset_name for that data set and comment the rest of the data sets in the following chunk.
+
 ```{r}
 
 if (!requireNamespace("flare", quietly = TRUE)) {
