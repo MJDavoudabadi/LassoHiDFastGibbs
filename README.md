@@ -57,7 +57,7 @@ remotes::install_github("MJDavoudabadi/LassoHiDFastGibbs", ref = "master")
 ---
 
 ## 📑 Rmd Files
-- `inst/benchmarks` – Rmd scripts for:
+- `inst/benchmarks` and `reproduction/` – Rmd scripts for:
 
 - **benchmark_horseshoe_ngtp.Rmd**  
   Benchmarks Bayesian Lasso when *n > p* using the horseshoe penalty. Runs the modified Park and Casella Gibbs sampler, nested Gibbs, two-block Gibbs, partially collapsed Gibbs, `bayeslm`, `bayesreg`, `monomvn`, and `rstan` algorithms.  
