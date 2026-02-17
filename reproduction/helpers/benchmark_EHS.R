@@ -69,7 +69,7 @@ benchmark_AHS <- function(
 
     vESS <- c()
     for(j in 1:p){
-      vESS[j] <- ess_basic(res_mcmc$BetaSamples[,j])
+      vESS[j] <- posterior::ess_basic(res_mcmc$BetaSamples[,j])
     }
     Ef = median(vESS)/time_val
     ESS_sigma2  = posterior::ess_bulk(res_mcmc$Sigma2Samples)
@@ -168,7 +168,7 @@ benchmark_EHS <- function(
 
     vESS <- c()
     for(j in 1:p){
-      vESS[j] <- ess_basic(res_mcmc$BetaSamples[,j])
+      vESS[j] <- posterior::ess_basic(res_mcmc$BetaSamples[,j])
     }
     Ef = median(vESS)/time_val
     ESS_sigma2  = posterior::ess_bulk(res_mcmc$Sigma2Samples)

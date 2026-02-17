@@ -77,6 +77,7 @@ benchmark_pcg_sigma2_col_lambda2 <- function(
 
   # Run the Gibbs sampler trials times
   mStat = NULL
+  p <- ncol(mX)
   for (i in seq_len(trials)) {
     time_val = system.time({
       res_mcmc = penalized_pcg_sigma2_lambda2(vy,
@@ -187,6 +188,7 @@ benchmark_blasso_pcg_sigma2_col_va <- function(
 
   # Run the Gibbs sampler trials times
   mStat = NULL
+  p <- ncol(mX)
   for (i in seq_len(trials)) {
     time_val = system.time({
       res_mcmc = blasso_pcg_sigma2_va(vy,
@@ -302,6 +304,7 @@ benchmark_pcg_sigma2_col_vbeta <- function(
 
   # Run the Gibbs sampler trials times
   mStat = NULL
+  p <- ncol(mX)
   for (i in seq_len(trials)) {
     time_val = system.time({
       res_mcmc = penalized_pcg_sigma2_beta(vy,

@@ -32,7 +32,8 @@ benchmark_horseshoe_brms <- function(
   mX <- as.matrix(mX)
   p <- ncol(mX)
 
-  prior_hs <- brms::prior(brms::horseshoe(df = 1), class = "b")
+  prior_hs <- brms::set_prior("horseshoe(df=1)", class = "b")
+
 
   warmup = nburn
   samples = nsamples - nburn

@@ -93,12 +93,12 @@ benchmark_blasso_rstan <- function(
 
   if (isTRUE(plot)) {
     # Plot the acf for sigma2 and lambda2
-    acf(res_last$sigma2[inds_use])
-    acf(res_last$lambda2[inds_use])
+    acf(res_mcmc$sigma2[inds_use])
+    acf(res_mcmc$lambda2[inds_use])
 
     # Trace plots for sigma2 and lambda2
-    plot(res_last$sigma2[inds_use], type = "l")
-    plot(res_last$lambda2[inds_use], type = "l")
+    plot(res_mcmc$sigma2[inds_use], type = "l")
+    plot(res_mcmc$lambda2[inds_use], type = "l")
   }
 
 
@@ -109,8 +109,8 @@ benchmark_blasso_rstan <- function(
   if (!requireNamespace("posterior", quietly = TRUE)) {
     message("Skipping R-hat: package 'posterior' is not installed.")
   } else {
-    rhat_sigma2  <- posterior::rhat(res_last$sigma2[inds_use])
-    rhat_lambda2 <- posterior::rhat(res_last$lambda2[inds_use])
+    rhat_sigma2  <- posterior::rhat(res_mcmc$sigma2[inds_use])
+    rhat_lambda2 <- posterior::rhat(res_mcmc$lambda2[inds_use])
   }
   # }
 

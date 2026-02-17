@@ -132,20 +132,20 @@ generate_data <- function(dataset_name) {
 
     # ---- diabetes (CRAN dataset from lars) ----
   } else if (dataset_name == "diabetes") {
-    if (!requireNamespace("lars", quietly = TRUE)) {
-      stop("Dataset 'diabetes' requires the 'lars' package.", call. = FALSE)
-    }
-    data("diabetes", package = "lars")
-    y <- lars::diabetes$y
-    x <- lars::diabetes$x
+    if (!requireNamespace("lars", quietly = TRUE)) knitr::knit_exit()
+    env <- new.env()
+    utils::data("diabetes", package = "lars", envir = env)
+    y <- env$diabetes$y
+    x <- env$diabetes$x
 
   } else if (dataset_name == "diabetes2") {
     if (!requireNamespace("lars", quietly = TRUE)) {
       stop("Dataset 'diabetes2' requires the 'lars' package.", call. = FALSE)
     }
-    data("diabetes", package = "lars")
-    y0 <- lars::diabetes$y
-    x0 <- lars::diabetes$x
+    env <- new.env()
+    utils::data("diabetes", package = "lars", envir = env)
+    y0 <- env$diabetes$y
+    x0 <- env$diabetes$x
 
     norm0 <- normalize(y0, x0, scale = TRUE)
     x <- .mm_power(norm0$mX, power = 2)
@@ -315,12 +315,23 @@ generate_cookie_data <- function() {
 }
 
 generate_riboflavin_data <- function() {
+
   if (!requireNamespace("hdi", quietly = TRUE)) {
     stop("Dataset 'riboflavin' requires the 'hdi' package.", call. = FALSE)
   }
-  data("riboflavin", package = "hdi")
-  list(x = hdi::riboflavin$x, y = hdi::riboflavin$y, dataset_name = "riboflavin")
+
+  dat_env <- new.env()
+  data("riboflavin", package = "hdi", envir = dat_env)
+
+  dat <- dat_env$riboflavin
+
+  list(
+    x = as.matrix(dat$x),
+    y = as.numeric(dat$y),
+    dataset_name = "riboflavin"
+  )
 }
+
 
 generate_qtl_data <- function() {
   resp_path <- .get_extdata_path("phe_simulat.csv")

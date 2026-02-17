@@ -1,6 +1,9 @@
 ---
-title: "Benchmark blasso p>n"
+title: "Benchmark blasso (p > n) horseshoe prior"
 output: rmarkdown::html_vignette
+params:
+  dataset_name: NULL
+  results_dir: "results"
 vignette: >
   %\VignetteIndexEntry{Benchmark blasso (p > n) horseshoe prior}
   %\VignetteEngine{knitr::rmarkdown}
@@ -16,6 +19,10 @@ knitr::opts_chunk$set(echo = TRUE,
   fig.height = 5)
 ```
 
+```{r load-pkg, include=FALSE}
+pkg_root <- normalizePath(file.path(dirname(knitr::current_input()), ".."))
+devtools::load_all(pkg_root)
+```
 
 ```{r load-helpers, include=FALSE}
 helpers_dir <- file.path(dirname(knitr::current_input()), "helpers")
@@ -39,10 +46,17 @@ helper_files <- c(
   "plot_densities.R"
 )
 
-for (f in helper_files) {
-  source(file.path(helpers_dir, f))
+# ---- actually load them ----
+helper_paths <- file.path(helpers_dir, helper_files)
+
+missing <- helper_paths[!file.exists(helper_paths)]
+if (length(missing) > 0) {
+  stop("Missing helper file(s):\n", paste(missing, collapse = "\n"))
 }
-```
+
+invisible(lapply(helper_paths, source, local = knitr::knit_global()))
+
+```  
 
 
 # Load R scripts
@@ -73,11 +87,13 @@ The outputs are:
 Note that for fitting the models to a specific data set uncomment the dataset_name for that data set and comment the rest of the data sets in the following chunk.
 
 ```{r}
+library(LassoHiDFastGibbs)
 
-if (!requireNamespace("flare", quietly = TRUE)) {
-  knitr::knit_exit()
-}
-dataset_name <- "eyedata"
+
+# if (!requireNamespace("flare", quietly = TRUE)) {
+#   knitr::knit_exit()
+# }
+# dataset_name <- "eyedata"
 
 
 #dataset_name <- "cookie"
@@ -94,6 +110,36 @@ dataset_name <- "eyedata"
 
 # dataset_name <- "qtl"
 ```
+
+
+```{r dataset, include=FALSE}
+dataset_name <- params$dataset_name
+results_dir  <- params$results_dir
+if (is.null(results_dir) || !nzchar(results_dir)) results_dir <- "results"
+dir.create(results_dir, showWarnings = FALSE, recursive = TRUE)
+
+if (is.null(dataset_name) || !nzchar(dataset_name)) {
+  stop("params$dataset_name is missing/empty")
+}
+
+# Enforce that ONLY paper datasets are allowed
+allowed_ngtp <- c("BostonHousing2", "diabetes2", "Hitters2", "Crime", "energy2", "Kakadu2")
+allowed_pgtn <- c("eyedata", "cookie", "riboflavin", "covid", "qtl")
+
+this_file <- basename(knitr::current_input())
+if (grepl("ngtp", this_file, fixed = TRUE)) {
+  if (!(dataset_name %in% allowed_ngtp)) stop("Dataset not in paper (ngtp): ", dataset_name)
+} else if (grepl("pgtn", this_file, fixed = TRUE)) {
+  if (!(dataset_name %in% allowed_pgtn)) stop("Dataset not in paper (pgtn): ", dataset_name)
+}
+
+message("Dataset: ", dataset_name)
+message("Results dir: ", results_dir)
+
+
+```
+
+
 
 # Set options
 
@@ -114,8 +160,8 @@ lambda_init = sqrt(lambda2_init)
 sigma2_init = 1
 
 # Number of samples to run the MCMC
-nburn = 1000
-nsamples = 11000
+nburn = 1
+nsamples = 11
 inds_use = (nburn + 1):nsamples
 
 # How many times to run each sampler
@@ -154,10 +200,12 @@ res_4BG = benchmark_4bg(vy, mX, "horseshoe", lambda_init, sigma2_init, a, b, u, 
 plot_densities(res_4BG)
 ```
 
-```{r, eval=interactive()}
+```{r}
 res_3BG = benchmark_3bg(vy, mX, "horseshoe", lambda_init, sigma2_init, a, b, u, v, nburn, nsamples, trials, beta_inds=res_4BG$beta_inds) 
 # print(res_3BG)
 ```
+
+
 ```{r, eval=interactive()}
 plot_density_pairs(res_4BG, res_3BG)
 ```
@@ -166,7 +214,7 @@ plot_density_pairs(res_4BG, res_3BG)
 
  
 
-```{r, eval=interactive()}
+```{r}
 res_ng1 = benchmark_nested_gibbs(vy,
                                 mX,
                                 penalty_type="horseshoe",
@@ -186,7 +234,7 @@ plot_density_pairs(res_ng1, res_4BG)
 ```
 
 
-```{r, eval=interactive()}
+```{r}
 res_ng2 = benchmark_nested_gibbs(vy,
                                 mX,
                                 penalty_type="horseshoe",
@@ -200,7 +248,7 @@ res_ng2 = benchmark_nested_gibbs(vy,
 ```
 
 
-```{r, eval=interactive()}
+```{r}
 res_ng3 = benchmark_nested_gibbs(vy,
                                 mX,
                                 penalty_type="horseshoe",
@@ -214,7 +262,7 @@ res_ng3 = benchmark_nested_gibbs(vy,
 ```
 
 
-```{r, eval=interactive()}
+```{r}
 res_ng4 = benchmark_nested_gibbs(vy,
                                 mX,
                                 penalty_type="horseshoe",
@@ -228,7 +276,7 @@ res_ng4 = benchmark_nested_gibbs(vy,
 ```
 
 
-```{r, eval=interactive()}
+```{r}
 res_ng5 = benchmark_nested_gibbs(vy,
                                 mX,
                                 penalty_type="horseshoe",
@@ -248,7 +296,7 @@ plot_density_pairs(res_ng5, res_4BG)
 
 
 
-```{r, eval=interactive()}
+```{r}
 res_ng10 = benchmark_nested_gibbs(vy,
                                 mX,
                                 penalty_type="horseshoe",
@@ -268,7 +316,7 @@ plot_density_pairs(res_ng10, res_4BG)
 # The partially collapsed Gibbs samplers
 
 
-```{r, eval=interactive()}
+```{r}
 res_pcg_ls = benchmark_pcg_lambda2_col_sigma2(vy, mX, "horseshoe", lambda_init, sigma2_init, a, b, u, v, nburn, nsamples, trials, beta_inds=res_4BG$beta_inds) 
 # print(res_pcg_ls)
 ```
@@ -277,7 +325,7 @@ res_pcg_ls = benchmark_pcg_lambda2_col_sigma2(vy, mX, "horseshoe", lambda_init, 
 plot_density_pairs(res_4BG, res_pcg_ls)
 ```
 
-```{r, eval=interactive()}
+```{r}
 res_pcg_sl = benchmark_pcg_sigma2_col_lambda2(vy, mX, "horseshoe", lambda_init, sigma2_init, a, b, u, v, nburn, nsamples, trials, beta_inds=res_4BG$beta_inds) 
 # print(res_pcg_sl)
 ```
@@ -288,7 +336,7 @@ plot_density_pairs(res_4BG, res_pcg_sl)
 
 
 
-```{r, eval=interactive()}
+```{r}
 res_pcg_bs = benchmark_pcg_vbeta_col_sigma2(vy, mX, "horseshoe", lambda_init, sigma2_init, a, b, u, v, nburn, nsamples, trials, beta_inds=res_4BG$beta_inds) 
 # print(res_pcg_bs)
 ```
@@ -299,8 +347,8 @@ plot_density_pairs(res_4BG, res_pcg_bs)
 ```
 
 
-```{r, eval=interactive()}
-res_pcg_sb = benchmark_pcg_vbeta_col_sigma2(vy, mX, "horseshoe", lambda_init, sigma2_init, a, b, u, v, nburn, nsamples, trials, beta_inds=res_4BG$beta_inds) 
+```{r}
+res_pcg_sb = benchmark_pcg_sigma2_col_vbeta(vy, mX, "horseshoe", lambda_init, sigma2_init, a, b, u, v, nburn, nsamples, trials, beta_inds=res_4BG$beta_inds) 
 # print(res_pcg_sb)
 ```
 
@@ -313,7 +361,7 @@ plot_density_pairs(res_4BG, res_pcg_sb)
 
  
  
-```{r, eval=interactive()}
+```{r}
 
 res_EHS <- NULL
 
@@ -323,7 +371,7 @@ if (requireNamespace("Mhorseshoe", quietly = TRUE)) {
                                               nburn, nsamples, trials=1, 
                                               beta_inds=res_4BG$beta_inds) 
 } else {
-  message("Skipping Mhorseshoe benchmark: package 'Mhorseshoe' is not installed.")
+  stop("Skipping Mhorseshoe benchmark: package 'Mhorseshoe' is not installed.")
 }
 # print(res_EHS)
 ```
@@ -333,7 +381,7 @@ plot_density_pairs(res_4BG, res_EHS)
 ```
 
  
-```{r, eval=interactive()}
+```{r}
 
 res_AHS <- NULL
 
@@ -343,7 +391,7 @@ if (requireNamespace("Mhorseshoe", quietly = TRUE)) {
                                               nburn, nsamples, trials=1, 
                                               beta_inds=res_4BG$beta_inds) 
 } else {
-  message("Skipping Mhorseshoe benchmark: package 'Mhorseshoe' is not installed.")
+  stop("Skipping Mhorseshoe benchmark: package 'Mhorseshoe' is not installed.")
 }
 # print(res_AHS)
 ```
@@ -352,22 +400,22 @@ if (requireNamespace("Mhorseshoe", quietly = TRUE)) {
 plot_density_pairs(res_4BG, res_AHS)
 ```
 
-```{r, eval=interactive()}
-# save(res_4BG,
-#      res_3BG,
-#      res_ng1,
-#      res_ng2,
-#      res_ng3,
-#      res_ng4,
-#      res_ng5,
-#      res_ng10,
-#      res_pcg_ls,
-#      res_pcg_sl,
-#      res_pcg_bs,
-#      res_pcg_sb,
-#      res_EHS,
-#      res_AHS,
-#      file = here("results",paste0(dataset_name,"_horseshoe_results_pgtn.Rdata")))
+```{r}
+save(res_4BG,
+     res_3BG,
+     res_ng1,
+     res_ng2,
+     res_ng3,
+     res_ng4,
+     res_ng5,
+     res_ng10,
+     res_pcg_ls,
+     res_pcg_sl,
+     res_pcg_bs,
+     res_pcg_sb,
+     res_EHS,
+     res_AHS,
+     file = file.path(results_dir, paste0(dataset_name,"_horseshoe_results_pgtn.Rdata")))
 ```
 
 

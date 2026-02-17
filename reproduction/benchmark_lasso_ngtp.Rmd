@@ -1,6 +1,9 @@
 ---
 title: "Benchmark blasso n>p lasso prior"
 output: rmarkdown::html_vignette
+params:
+  dataset_name: NULL
+  results_dir: "results"
 vignette: >
   %\VignetteIndexEntry{Benchmark blasso n>p lasso prior}
   %\VignetteEngine{knitr::rmarkdown}
@@ -17,11 +20,14 @@ knitr::opts_chunk$set(echo = TRUE,
 
 ```{r load-package, include=FALSE}
 library(LassoHiDFastGibbs)
+library(here)
+```
 
+```{r load-pkg, include=FALSE}
 pkg_root <- normalizePath(file.path(dirname(knitr::current_input()), ".."))
 devtools::load_all(pkg_root)
-
 ```
+
 
 
 ```{r load-helpers, include=FALSE}
@@ -46,9 +52,44 @@ helper_files <- c(
   "plot_densities.R"
 )
 
-for (f in helper_files) {
-  source(file.path(helpers_dir, f))
+# ---- actually load them ----
+helper_paths <- file.path(helpers_dir, helper_files)
+
+missing <- helper_paths[!file.exists(helper_paths)]
+if (length(missing) > 0) {
+  stop("Missing helper file(s):\n", paste(missing, collapse = "\n"))
 }
+
+invisible(lapply(helper_paths, source, local = knitr::knit_global()))
+
+```
+
+
+```{r dataset, include=FALSE}
+dataset_name <- params$dataset_name
+results_dir  <- params$results_dir
+if (is.null(results_dir) || !nzchar(results_dir)) results_dir <- "results"
+dir.create(results_dir, showWarnings = FALSE, recursive = TRUE)
+
+if (is.null(dataset_name) || !nzchar(dataset_name)) {
+  stop("params$dataset_name is missing/empty")
+}
+
+# Enforce that ONLY paper datasets are allowed
+allowed_ngtp <- c("BostonHousing2", "diabetes2", "Hitters2", "Crime", "energy2", "Kakadu2")
+allowed_pgtn <- c("eyedata", "cookie", "riboflavin", "covid", "qtl")
+
+this_file <- basename(knitr::current_input())
+if (grepl("ngtp", this_file, fixed = TRUE)) {
+  if (!(dataset_name %in% allowed_ngtp)) stop("Dataset not in paper (ngtp): ", dataset_name)
+} else if (grepl("pgtn", this_file, fixed = TRUE)) {
+  if (!(dataset_name %in% allowed_pgtn)) stop("Dataset not in paper (pgtn): ", dataset_name)
+}
+
+message("Dataset: ", dataset_name)
+message("Results dir: ", results_dir)
+
+
 ```
 
 
@@ -80,10 +121,10 @@ Note that for fitting the models to a specific data set uncomment the dataset_na
 
 ```{r}
 
-if (!requireNamespace("mlbench", quietly = TRUE)) {
-  knitr::knit_exit()
-}
-dataset_name <- "BostonHousing2"
+# if (!requireNamespace("mlbench", quietly = TRUE)) {
+#   knitr::knit_exit()
+# }
+# dataset_name <- "BostonHousing2"
 
 
 # dataset_name <- "Crime"
@@ -136,7 +177,7 @@ dataset_name <- "BostonHousing2"
 
 ```{r}
 
-library(LassoHiDFastGibbs)
+# library(LassoHiDFastGibbs)
 
 
 # Set prior hyperparameter constants
@@ -151,8 +192,8 @@ lambda_init = sqrt(lambda2_init)
 sigma2_init = 1
 
 # Number of samples to run the MCMC
-nburn = 1000
-nsamples = 11000
+nburn = 1
+nsamples = 11
 inds_use = (nburn + 1):nsamples
 
 # How many times to run each sampler
@@ -191,10 +232,12 @@ res_4BG = benchmark_4bg(vy, mX, "lasso", lambda_init, sigma2_init, a, b, u, v, n
 plot_densities(res_4BG)
 ```
 
-```{r, eval=interactive()}
+```{r}
 res_3BG = benchmark_3bg(vy, mX, "lasso", lambda_init, sigma2_init, a, b, u, v, nburn, nsamples, trials, beta_inds=res_4BG$beta_inds) 
 # print(res_3BG)
 ```
+
+
 ```{r, eval=interactive()}
 plot_density_pairs(res_4BG, res_3BG)
 ```
@@ -203,7 +246,7 @@ plot_density_pairs(res_4BG, res_3BG)
 
  
 
-```{r, eval=interactive()}
+```{r}
 res_ng1 = benchmark_nested_gibbs(vy,
                                 mX,
                                 penalty_type="lasso",
@@ -222,7 +265,7 @@ res_ng1 = benchmark_nested_gibbs(vy,
 plot_density_pairs(res_ng1, res_4BG)
 ```
 
-```{r, eval=interactive()}
+```{r}
 res_ng5 = benchmark_nested_gibbs(vy,
                                 mX,
                                 penalty_type="lasso",
@@ -234,6 +277,8 @@ res_ng5 = benchmark_nested_gibbs(vy,
                                 trials,
                                 beta_inds=res_4BG$beta_inds) 
 ```
+
+
 ```{r, eval=interactive()}
 plot_density_pairs(res_ng5, res_4BG)
 ```
@@ -241,7 +286,7 @@ plot_density_pairs(res_ng5, res_4BG)
 
 
 
-```{r, eval=interactive()}
+```{r}
 res_ng10 = benchmark_nested_gibbs(vy,
                                 mX,
                                 penalty_type="lasso",
@@ -262,7 +307,7 @@ plot_density_pairs(res_ng10, res_4BG)
 # Modified Hans sampler
 
 
-```{r, eval=interactive()}
+```{r}
 res_hans = benchmark_blasso_hans(vy, mX,lambda_init, sigma2_init, a, b, u, v, nburn, nsamples, trials, beta_inds=res_4BG$beta_inds) 
 # print(res_hans)
 ```
@@ -274,7 +319,7 @@ plot_density_pairs(res_hans, res_3BG)
 
 # The two two-block Gibbs samplers with 2/2 grouping
 
-```{r, eval=interactive()}
+```{r}
 res_2BG_bs = benchmark_blasso_2BG_beta_sigma2(vy, mX,lambda_init, sigma2_init, a, b, u, v, nburn, nsamples, trials, beta_inds=res_4BG$beta_inds) 
 # print(res_2BG_bs)
 ```
@@ -283,7 +328,7 @@ res_2BG_bs = benchmark_blasso_2BG_beta_sigma2(vy, mX,lambda_init, sigma2_init, a
 plot_density_pairs(res_3BG, res_2BG_bs)
 ```
 
-```{r, eval=interactive()}
+```{r}
 res_2BG_bl = benchmark_blasso_2BG_beta_lambda2(vy, mX,lambda_init, sigma2_init, a, b, u, v, nburn, nsamples, trials, beta_inds=res_4BG$beta_inds) 
 # print(res_2BG_bl)
 ```
@@ -297,7 +342,7 @@ plot_density_pairs(res_3BG, res_2BG_bl)
 # The partially collapsed Gibbs samplers
 
 
-```{r, eval=interactive()}
+```{r}
 res_pcg_ls = benchmark_pcg_lambda2_col_sigma2(vy, mX, "lasso", lambda_init, sigma2_init, a, b, u, v, nburn, nsamples, trials, beta_inds=res_4BG$beta_inds) 
 # print(res_pcg_ls)
 ```
@@ -306,7 +351,7 @@ res_pcg_ls = benchmark_pcg_lambda2_col_sigma2(vy, mX, "lasso", lambda_init, sigm
 plot_density_pairs(res_4BG, res_pcg_ls)
 ```
 
-```{r, eval=interactive()}
+```{r}
 res_pcg_sl = benchmark_pcg_sigma2_col_lambda2(vy, mX, "lasso", lambda_init, sigma2_init, a, b, u, v, nburn, nsamples, trials, beta_inds=res_4BG$beta_inds) 
 # print(res_pcg_sl)
 ```
@@ -315,7 +360,7 @@ res_pcg_sl = benchmark_pcg_sigma2_col_lambda2(vy, mX, "lasso", lambda_init, sigm
 plot_density_pairs(res_4BG, res_pcg_sl)
 ```
 
-```{r, eval=interactive()}
+```{r}
 res_pcg_la = benchmark_blasso_pcg_lambda2_col_va(vy, mX,lambda_init, sigma2_init, a, b, u, v, nburn, nsamples, trials, beta_inds=res_4BG$beta_inds) 
 # print(res_pcg_la)
 ```
@@ -325,7 +370,7 @@ plot_density_pairs(res_4BG, res_pcg_la)
 ```
 
 
-```{r, eval=interactive()}
+```{r}
 res_pcg_sa = benchmark_blasso_pcg_sigma2_col_va(vy, mX,lambda_init, sigma2_init, a, b, u, v, nburn, nsamples, trials, beta_inds=res_4BG$beta_inds) 
 # print(res_pcg_sa)
 ```
@@ -334,7 +379,7 @@ res_pcg_sa = benchmark_blasso_pcg_sigma2_col_va(vy, mX,lambda_init, sigma2_init,
 plot_density_pairs(res_4BG, res_pcg_sa)
 ```
 
-```{r, eval=interactive()}
+```{r}
 res_pcg_bs = benchmark_pcg_vbeta_col_sigma2(vy, mX, "lasso", lambda_init, sigma2_init, a, b, u, v, nburn, nsamples, trials, beta_inds=res_4BG$beta_inds) 
 # print(res_pcg_bs)
 ```
@@ -345,8 +390,8 @@ plot_density_pairs(res_4BG, res_pcg_bs)
 ```
 
 
-```{r, eval=interactive()}
-res_pcg_sb = benchmark_pcg_vbeta_col_sigma2(vy, mX, "lasso", lambda_init, sigma2_init, a, b, u, v, nburn, nsamples, trials, beta_inds=res_4BG$beta_inds) 
+```{r}
+res_pcg_sb = benchmark_pcg_sigma2_col_vbeta(vy, mX, "lasso", lambda_init, sigma2_init, a, b, u, v, nburn, nsamples, trials, beta_inds=res_4BG$beta_inds) 
 # print(res_pcg_sb)
 ```
 
@@ -359,7 +404,7 @@ plot_density_pairs(res_4BG, res_pcg_sb)
 
  
  
-```{r, eval=interactive()}
+```{r}
 
 res_monomvn <- NULL
 
@@ -373,7 +418,7 @@ res_monomvn = benchmark_blasso_monomvn(vy, mX,
 # print(res_monomvn)
 ```
 
-```{r, eval=interactive()}
+```{r}
 
 res_bayeslm <- NULL
 
@@ -387,7 +432,7 @@ res_bayeslm = benchmark_blasso_bayeslm(vy, mX,
 # print(res_bayeslm)
 ```
 
-```{r, eval= FALSE}
+```{r}
 
 res_rstan <- NULL
 
@@ -397,12 +442,12 @@ res_rstan = benchmark_blasso_rstan(vy, mX,
                                        nburn, nsamples, trials=1, 
                                        beta_inds=res_4BG$beta_inds)
 }else {
-  message("Skipping rstan benchmark: package 'rstan' is not installed.")
+  stop("Skipping rstan benchmark: package 'rstan' is not installed.")
 }
 # print(res_rstan)
 ```
 
-```{r, eval=interactive()}
+```{r}
 
 res_bayesreg <- NULL
 
@@ -417,26 +462,26 @@ res_bayesreg = benchmark_blasso_bayesreg(vy, mX,
 ```
 
 
-```{r, eval=interactive()}
-# save(res_4BG,
-#      res_3BG,
-#      res_2BG_bl,
-#      res_2BG_bs,
-#      res_hans,
-#      res_ng1,
-#      res_ng5,
-#      res_ng10,
-#      res_pcg_ls,
-#      res_pcg_sl,
-#      res_pcg_la,
-#      res_pcg_sa,
-#      res_pcg_bs,
-#      res_pcg_sb,
-#      res_bayeslm,
-#      res_bayesreg,
-#      res_monomvn,
-#      res_rstan,
-#      file = here("results",paste0(dataset_name,"_results_ngtp.Rdata")))
+```{r}
+save(res_4BG,
+     res_3BG,
+     res_2BG_bl,
+     res_2BG_bs,
+     res_hans,
+     res_ng1,
+     res_ng5,
+     res_ng10,
+     res_pcg_ls,
+     res_pcg_sl,
+     res_pcg_la,
+     res_pcg_sa,
+     res_pcg_bs,
+     res_pcg_sb,
+     res_bayeslm,
+     res_bayesreg,
+     res_monomvn,
+     res_rstan,
+     file = file.path(results_dir, paste0(dataset_name,"_results_ngtp.Rdata")))
 ```
 
 

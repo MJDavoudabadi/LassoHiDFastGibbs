@@ -135,17 +135,19 @@ generate_data <- function(dataset_name) {
     if (!requireNamespace("lars", quietly = TRUE)) {
       stop("Dataset 'diabetes' requires the 'lars' package.", call. = FALSE)
     }
-    data("diabetes", package = "lars")
-    y <- lars::diabetes$y
-    x <- lars::diabetes$x
+    env <- new.env()
+    utils::data("diabetes", package = "lars", envir = env)
+    y <- env$diabetes$y
+    x <- env$diabetes$x
 
   } else if (dataset_name == "diabetes2") {
     if (!requireNamespace("lars", quietly = TRUE)) {
       stop("Dataset 'diabetes2' requires the 'lars' package.", call. = FALSE)
     }
-    data("diabetes", package = "lars")
-    y0 <- lars::diabetes$y
-    x0 <- lars::diabetes$x
+    env <- new.env()
+    utils::data("diabetes", package = "lars", envir = env)
+    y0 <- env$diabetes$y
+    x0 <- env$diabetes$x
 
     norm0 <- normalize(y0, x0, scale = TRUE)
     x <- .mm_power(norm0$mX, power = 2)
