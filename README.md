@@ -33,7 +33,12 @@ remotes::install_github("MJDavoudabadi/LassoHiDFastGibbs", ref = "master")
 - `R/` – R scripts implementing:
   - PCG, two-block, and nested Gibbs sampling algorithms  
   - Functions for generating and normalizing data  
-  - Effective sample size computation and MCMC diagnostics  
+  - Effective sample size computation and MCMC diagnostics
+ 
+- `reproduction/` – Rmd scripts for reproducing the results of the paper:
+  - Benchmarks Bayesian Lasso when *n > p* using the horseshoe and Lasso penalties
+  - Benchmarks Bayesian Lasso when *p > n* using the horseshoe and Lasso penalties
+  -  Generates the tables provided in the paper
 
 - `inst/benchmarks` – Rmd scripts for:
   - Benchmarks Bayesian Lasso when *n > p* using the horseshoe and Lasso penalties
@@ -52,7 +57,7 @@ remotes::install_github("MJDavoudabadi/LassoHiDFastGibbs", ref = "master")
 ---
 
 ## 📑 Rmd Files
-- `inst/benchmarks` – Rmd scripts for:
+- `inst/benchmarks` and `reproduction/` – Rmd scripts for:
 
 - **benchmark_horseshoe_ngtp.Rmd**  
   Benchmarks Bayesian Lasso when *n > p* using the horseshoe penalty. Runs the modified Park and Casella Gibbs sampler, nested Gibbs, two-block Gibbs, partially collapsed Gibbs, `bayeslm`, `bayesreg`, `monomvn`, and `rstan` algorithms.  
