@@ -1,4 +1,20 @@
 
+############################################################
+# Reproducibility Script for LassoHiDFastGibbs
+#
+# IMPORTANT NOTE:
+#
+# Running all R Markdown files in this script with the full
+# MCMC settings (e.g., 11000 iterations per chain) may take
+# several days on a standard desktop machine.
+#
+# The long runtime is due to:
+#   - High-dimensional MCMC sampling
+#   - Large benchmark datasets
+#   - Multiple competing methods fitted for comparison
+#
+############################################################
+
 
 results_dir <- "results"
 stopifnot(dir.exists(results_dir))
