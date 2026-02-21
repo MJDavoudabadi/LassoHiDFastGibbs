@@ -1,7 +1,7 @@
 Package: LassoHiDFastGibbs
 Type: Package
 Title: Fast High-Dimensional Gibbs Samplers for Bayesian Lasso Regression
-Version: 0.1.4
+Version: 0.1.5
 Authors@R: c(person("John", "Ormerod",
            email = "john.ormerod@sydney.edu.au",
            role = "aut",
@@ -31,7 +31,7 @@ Encoding: UTF-8
 LazyData: true
 SystemRequirements: C++17
 Imports: Rcpp
-LinkingTo: Rcpp, RcppArmadillo, RcppEigen, RcppNumerical, RcppClock
+LinkingTo: Rcpp, RcppArmadillo, RcppEigen, RcppNumerical
 NeedsCompilation: yes
 RoxygenNote: 7.3.2
 Suggests: posterior
